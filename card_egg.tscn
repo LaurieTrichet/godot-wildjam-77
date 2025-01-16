@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bniflaymbcg6o"]
+
+[ext_resource type="Texture2D" uid="uid://ce5mycisrfevf" path="res://checkmark.png" id="1_57ahb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o0g3f"]
+load_path = "res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6avli"]
+atlas = SubResource("CompressedTexture2D_o0g3f")
+region = Rect2(140, 570, 140, 190)
+
+[node name="CardEgg" type="PanelContainer"]
+custom_minimum_size = Vector2(140, 190)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6avli")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Select"
+
+[node name="Checkmark" type="Sprite2D" parent="."]
+modulate = Color(0, 0.48, 0.088, 1)
+position = Vector2(107, 9)
+texture = ExtResource("1_57ahb")

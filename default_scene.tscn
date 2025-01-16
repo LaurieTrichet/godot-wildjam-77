@@ -1,10 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://ykhkmcg0j1g8"]
+[gd_scene load_steps=6 format=3 uid="uid://ykhkmcg0j1g8"]
 
-[ext_resource type="Texture2D" uid="uid://b8m4es6sow0pu" path="res://icon.svg" id="1_gom1j"]
+[ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://playingCardBacks.png" id="2_wmoj5"]
+[ext_resource type="PackedScene" uid="uid://bniflaymbcg6o" path="res://card_egg.tscn" id="3_0ncv4"]
+[ext_resource type="PackedScene" uid="uid://dwyuh377oyydw" path="res://card_food_3.tscn" id="4_t78wm"]
+[ext_resource type="Script" path="res://open_pack.gd" id="5_qjk1h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
+atlas = ExtResource("2_wmoj5")
+region = Rect2(0, 0, 140, 190)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gom1j")
-
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -540.0
+offset_top = -360.0
+offset_right = 540.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="CardPack" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(140, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CardPack"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_3s05t")
+
+[node name="Button" type="Button" parent="VBoxContainer/CardPack"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Open"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CardEgg" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_0ncv4")]
+layout_mode = 2
+
+[node name="CardFood4" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_t78wm")]
+layout_mode = 2
+
+[node name="CardFood5" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_t78wm")]
+layout_mode = 2
+
+[node name="CardFood3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_t78wm")]
+layout_mode = 2
+
+[node name="OpenPack" type="Node" parent="VBoxContainer" node_paths=PackedStringArray("card_pack", "card_row")]
+script = ExtResource("5_qjk1h")
+card_pack = NodePath("../CardPack")
+card_row = NodePath("../HBoxContainer")
+
+[connection signal="pressed" from="VBoxContainer/CardPack/Button" to="VBoxContainer/OpenPack" method="do"]
