@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ykhkmcg0j1g8"]
+[gd_scene load_steps=7 format=3 uid="uid://ykhkmcg0j1g8"]
 
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://playingCardBacks.png" id="2_wmoj5"]
-[ext_resource type="PackedScene" uid="uid://bniflaymbcg6o" path="res://card_egg.tscn" id="3_0ncv4"]
-[ext_resource type="PackedScene" uid="uid://dwyuh377oyydw" path="res://card_food_3.tscn" id="4_t78wm"]
+[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://card.tscn" id="3_0ncv4"]
 [ext_resource type="Script" path="res://open_pack.gd" id="5_qjk1h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
 atlas = ExtResource("2_wmoj5")
 region = Rect2(0, 0, 140, 190)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8dcmi"]
+load_path = "res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3ipw"]
+atlas = SubResource("CompressedTexture2D_8dcmi")
+region = Rect2(420, 1710, 140, 190)
 
 [node name="Node2D" type="Node2D"]
 
@@ -48,17 +54,26 @@ text = "Open"
 visible = false
 layout_mode = 2
 
-[node name="CardEgg" parent="VBoxContainer/HBoxContainer" instance=ExtResource("3_0ncv4")]
+[node name="CardEgg" parent="VBoxContainer/HBoxContainer" groups=["egg"] instance=ExtResource("3_0ncv4")]
 layout_mode = 2
 
-[node name="CardFood4" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_t78wm")]
+[node name="CardFood" parent="VBoxContainer/HBoxContainer" groups=["food"] instance=ExtResource("3_0ncv4")]
 layout_mode = 2
 
-[node name="CardFood5" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_t78wm")]
+[node name="TextureRect" parent="VBoxContainer/HBoxContainer/CardFood" index="0"]
+texture = SubResource("AtlasTexture_e3ipw")
+
+[node name="CardFood2" parent="VBoxContainer/HBoxContainer" groups=["food"] instance=ExtResource("3_0ncv4")]
 layout_mode = 2
 
-[node name="CardFood3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_t78wm")]
+[node name="TextureRect" parent="VBoxContainer/HBoxContainer/CardFood2" index="0"]
+texture = SubResource("AtlasTexture_e3ipw")
+
+[node name="CardFood3" parent="VBoxContainer/HBoxContainer" groups=["food"] instance=ExtResource("3_0ncv4")]
 layout_mode = 2
+
+[node name="TextureRect" parent="VBoxContainer/HBoxContainer/CardFood3" index="0"]
+texture = SubResource("AtlasTexture_e3ipw")
 
 [node name="OpenPack" type="Node" parent="VBoxContainer" node_paths=PackedStringArray("card_pack", "card_row")]
 script = ExtResource("5_qjk1h")
@@ -66,3 +81,7 @@ card_pack = NodePath("../CardPack")
 card_row = NodePath("../HBoxContainer")
 
 [connection signal="pressed" from="VBoxContainer/CardPack/Button" to="VBoxContainer/OpenPack" method="do"]
+
+[editable path="VBoxContainer/HBoxContainer/CardFood"]
+[editable path="VBoxContainer/HBoxContainer/CardFood2"]
+[editable path="VBoxContainer/HBoxContainer/CardFood3"]
