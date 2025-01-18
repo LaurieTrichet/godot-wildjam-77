@@ -32,130 +32,164 @@ region = Rect2(0, 570, 140, 190)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainLayout" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -540.0
 offset_top = -360.0
 offset_right = 540.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-metadata/_edit_use_anchors_ = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="TopMenu" type="PanelContainer" parent="MainLayout"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="CardPack" type="PanelContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/TopMenu"]
+layout_mode = 2
+
+[node name="OpenPackPanelContainer" type="PanelContainer" parent="MainLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="OpenPack" type="Node" parent="MainLayout/OpenPackPanelContainer" node_paths=PackedStringArray("card_pack")]
+script = ExtResource("5_qjk1h")
+card_pack = NodePath("../VBoxContainer/CardPack")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/OpenPackPanelContainer"]
+layout_mode = 2
+
+[node name="CardPack" type="PanelContainer" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(140, 190)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/CardPack"]
+[node name="TextureRect" type="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_3s05t")
 
-[node name="Button" type="Button" parent="VBoxContainer/CardPack"]
+[node name="Button" type="Button" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Open"
 
-[node name="SelectedCardsArea" type="PanelContainer" parent="VBoxContainer"]
+[node name="PackContainer" type="HBoxContainer" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/SelectedCardsArea"]
+[node name="CardEgg" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["egg", "salamander"] instance=ExtResource("3_0ncv4")]
+layout_mode = 2
+script = ExtResource("4_kel73")
+
+[node name="RecipeHolder" type="Node" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardEgg"]
+script = ExtResource("4_kel73")
+recipe = ExtResource("5_7m2bw")
+
+[node name="CardFood" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
+layout_mode = 2
+
+[node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood" index="0"]
+texture = SubResource("AtlasTexture_e3ipw")
+
+[node name="CardFood2" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["resources", "time"] instance=ExtResource("3_0ncv4")]
+layout_mode = 2
+
+[node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood2" index="0"]
+texture = SubResource("AtlasTexture_8ieng")
+
+[node name="CardFood3" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
+layout_mode = 2
+
+[node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood3" index="0"]
+texture = SubResource("AtlasTexture_e3ipw")
+
+[node name="AcceptCardsButton" type="Button" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add to hand."
+
+[node name="PlayAreaContainer" type="VBoxContainer" parent="MainLayout"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedCardsArea" type="PanelContainer" parent="MainLayout/PlayAreaContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainLayout/PlayAreaContainer/SelectedCardsArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Place your card here."
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SelectedCardsArea"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea"]
 layout_mode = 2
 
-[node name="SalamanderContainer" type="HBoxContainer" parent="VBoxContainer/SelectedCardsArea/HBoxContainer"]
+[node name="SalamanderContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/SelectedCardsArea/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/SelectedCardsArea/HBoxContainer/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer/CenterContainer"]
 layout_mode = 2
 texture = ExtResource("3_cleij")
 
-[node name="CardsContainer" type="HBoxContainer" parent="VBoxContainer/SelectedCardsArea/HBoxContainer"]
+[node name="CardsContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="HandsCardsArea" type="PanelContainer" parent="VBoxContainer"]
+[node name="HandsCardsArea" type="PanelContainer" parent="MainLayout/PlayAreaContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HandsCardsArea"]
+[node name="Label" type="Label" parent="MainLayout/PlayAreaContainer/HandsCardsArea"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Your hand"
 
-[node name="HandContainer" type="HBoxContainer" parent="VBoxContainer/HandsCardsArea"]
+[node name="HandContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/HandsCardsArea"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CardEgg" parent="VBoxContainer/HandsCardsArea/HandContainer" groups=["egg", "salamander"] instance=ExtResource("3_0ncv4")]
-layout_mode = 2
-script = ExtResource("4_kel73")
-
-[node name="RecipeHolder" type="Node" parent="VBoxContainer/HandsCardsArea/HandContainer/CardEgg"]
-script = ExtResource("4_kel73")
-recipe = ExtResource("5_7m2bw")
-
-[node name="CardFood" parent="VBoxContainer/HandsCardsArea/HandContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
-layout_mode = 2
-
-[node name="TextureRect" parent="VBoxContainer/HandsCardsArea/HandContainer/CardFood" index="0"]
-texture = SubResource("AtlasTexture_e3ipw")
-
-[node name="CardFood2" parent="VBoxContainer/HandsCardsArea/HandContainer" groups=["resources", "time"] instance=ExtResource("3_0ncv4")]
-layout_mode = 2
-
-[node name="TextureRect" parent="VBoxContainer/HandsCardsArea/HandContainer/CardFood2" index="0"]
-texture = SubResource("AtlasTexture_8ieng")
-
-[node name="CardFood3" parent="VBoxContainer/HandsCardsArea/HandContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
-layout_mode = 2
-
-[node name="TextureRect" parent="VBoxContainer/HandsCardsArea/HandContainer/CardFood3" index="0"]
-texture = SubResource("AtlasTexture_e3ipw")
-
-[node name="MoveSelectedCards" type="Node" parent="VBoxContainer"]
+[node name="MoveSelectedCards" type="Node" parent="MainLayout/PlayAreaContainer"]
 script = ExtResource("5_pbdl8")
 
-[node name="OpenPack" type="Node" parent="VBoxContainer" node_paths=PackedStringArray("card_pack")]
-script = ExtResource("5_qjk1h")
-card_pack = NodePath("../CardPack")
-
-[node name="FeedButton" type="Button" parent="VBoxContainer"]
+[node name="FeedButton" type="Button" parent="MainLayout/PlayAreaContainer"]
 custom_minimum_size = Vector2(190, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 disabled = true
 text = "Feed"
 
-[node name="HandleMetamorphose" type="Node" parent="VBoxContainer"]
+[node name="HandleMetamorphose" type="Node" parent="MainLayout/PlayAreaContainer"]
 script = ExtResource("4_oh5qn")
 
 [node name="Tutorial1" type="Node" parent="."]
 script = ExtResource("4_xju2m")
 
-[connection signal="pressed" from="VBoxContainer/CardPack/Button" to="VBoxContainer/OpenPack" method="do"]
-[connection signal="done" from="VBoxContainer/MoveSelectedCards" to="VBoxContainer/HandleMetamorphose" method="do"]
-[connection signal="is_invalid" from="VBoxContainer/HandleMetamorphose" to="VBoxContainer/FeedButton" method="set_disabled" binds= [true]]
-[connection signal="is_valid" from="VBoxContainer/HandleMetamorphose" to="VBoxContainer/FeedButton" method="set_disabled" binds= [false]]
+[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="MainLayout/OpenPackPanelContainer/OpenPack" method="do"]
+[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="send_to_hand"]
+[connection signal="done" from="MainLayout/PlayAreaContainer/MoveSelectedCards" to="MainLayout/PlayAreaContainer/HandleMetamorphose" method="do"]
+[connection signal="is_invalid" from="MainLayout/PlayAreaContainer/HandleMetamorphose" to="MainLayout/PlayAreaContainer/FeedButton" method="set_disabled" binds= [true]]
+[connection signal="is_valid" from="MainLayout/PlayAreaContainer/HandleMetamorphose" to="MainLayout/PlayAreaContainer/FeedButton" method="set_disabled" binds= [false]]
 
-[editable path="VBoxContainer/HandsCardsArea/HandContainer/CardEgg"]
-[editable path="VBoxContainer/HandsCardsArea/HandContainer/CardFood"]
-[editable path="VBoxContainer/HandsCardsArea/HandContainer/CardFood2"]
-[editable path="VBoxContainer/HandsCardsArea/HandContainer/CardFood3"]
+[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardEgg"]
+[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood"]
+[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood2"]
+[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood3"]
