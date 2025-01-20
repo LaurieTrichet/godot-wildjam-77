@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxlt7qoehkeu5"
-path="res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"
+uid="uid://ce5mycisrfevf"
+path="res://.godot/imported/checkmark.png-20c81e9e36276e6339f42802a2144a87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://playingCards.png"
-dest_files=["res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"]
+source_file="res://cards/checkmark.png"
+dest_files=["res://.godot/imported/checkmark.png-20c81e9e36276e6339f42802a2144a87.ctex"]
 
 [params]
 

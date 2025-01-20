@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://ykhkmcg0j1g8"]
 
-[ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://playingCardBacks.png" id="2_wmoj5"]
-[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://card.tscn" id="3_0ncv4"]
-[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://simple_right.png" id="3_cleij"]
-[ext_resource type="Script" path="res://recipe_holder.gd" id="4_kel73"]
-[ext_resource type="Script" path="res://handle_metamorphose.gd" id="4_oh5qn"]
-[ext_resource type="Script" path="res://tutorial_1.gd" id="4_xju2m"]
-[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/egg_recipe.tres" id="5_7m2bw"]
-[ext_resource type="Script" path="res://move_selected_cards.gd" id="5_pbdl8"]
-[ext_resource type="Script" path="res://open_pack.gd" id="5_qjk1h"]
+[ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
+[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/card.tscn" id="3_0ncv4"]
+[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="3_cleij"]
+[ext_resource type="Script" path="res://recipes/recipe_holder.gd" id="4_kel73"]
+[ext_resource type="Script" path="res://play_area/handle_metamorphose.gd" id="4_oh5qn"]
+[ext_resource type="Script" path="res://play_area/tutorial_1.gd" id="4_xju2m"]
+[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_7m2bw"]
+[ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="5_pbdl8"]
+[ext_resource type="Script" path="res://play_area/open_pack.gd" id="5_qjk1h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
 atlas = ExtResource("2_wmoj5")
@@ -90,6 +90,7 @@ layout_mode = 2
 [node name="CardEgg" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["egg", "salamander"] instance=ExtResource("3_0ncv4")]
 layout_mode = 2
 script = ExtResource("4_kel73")
+recipe = null
 
 [node name="RecipeHolder" type="Node" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardEgg"]
 script = ExtResource("4_kel73")

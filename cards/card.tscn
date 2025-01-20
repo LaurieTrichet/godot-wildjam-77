@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqomndebwjgmn"]
+
+[ext_resource type="Texture2D" uid="uid://ce5mycisrfevf" path="res://cards/checkmark.png" id="1_57ahb"]
+[ext_resource type="Script" path="res://cards/card.gd" id="1_dmbbn"]
+[ext_resource type="Script" path="res://cards/selectable.gd" id="2_u8iu0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_afhux"]
+load_path = "res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aiasp"]
+atlas = SubResource("CompressedTexture2D_afhux")
+region = Rect2(140, 570, 140, 190)
+
+[node name="Card" type="PanelContainer"]
+custom_minimum_size = Vector2(140, 190)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_dmbbn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_aiasp")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+
+[node name="Checkmark" type="Sprite2D" parent="."]
+modulate = Color(0, 0.48, 0.088, 1)
+position = Vector2(107, 9)
+texture = ExtResource("1_57ahb")
+
+[node name="Selectable" type="Node" parent="."]
+script = ExtResource("2_u8iu0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NextStageLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="Selectable" method="toggle_selection"]
