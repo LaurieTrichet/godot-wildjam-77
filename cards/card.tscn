@@ -1,57 +1,112 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqomndebwjgmn"]
+[gd_scene load_steps=10 format=3 uid="uid://dqomndebwjgmn"]
 
 [ext_resource type="Texture2D" uid="uid://ce5mycisrfevf" path="res://cards/checkmark.png" id="1_57ahb"]
 [ext_resource type="Script" path="res://cards/card.gd" id="1_dmbbn"]
+[ext_resource type="Resource" uid="uid://crmcya5nvr4gk" path="res://cards/data/fire_salamander_adult.tres" id="2_k3oyj"]
 [ext_resource type="Script" path="res://cards/selectable.gd" id="2_u8iu0"]
+[ext_resource type="Script" path="res://cards/display_card_property.gd" id="4_7jxxp"]
+[ext_resource type="Script" path="res://cards/set_card_image.gd" id="5_erwxd"]
+[ext_resource type="Texture2D" uid="uid://di4p2o7jp64gr" path="res://textures/fire_salamander_adult.png" id="6_ouusk"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_afhux"]
-load_path = "res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"
+[sub_resource type="Gradient" id="Gradient_6t1ac"]
+offsets = PackedFloat32Array(0, 0.25, 1)
+colors = PackedColorArray(1, 0.9715, 0.81, 1, 0.78, 0.721333, 0.78, 1, 0.855026, 0.795589, 0.603711, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aiasp"]
-atlas = SubResource("CompressedTexture2D_afhux")
-region = Rect2(140, 570, 140, 190)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_px6ni"]
+gradient = SubResource("Gradient_6t1ac")
 
 [node name="Card" type="PanelContainer"]
-custom_minimum_size = Vector2(140, 190)
+custom_minimum_size = Vector2(250, 330)
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 255.0
+offset_bottom = 331.0
 size_flags_horizontal = 4
-size_flags_vertical = 4
 script = ExtResource("1_dmbbn")
+card_data = ExtResource("2_k3oyj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-texture = SubResource("AtlasTexture_aiasp")
+texture = SubResource("GradientTexture1D_px6ni")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(110, 170)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "type"
+script = ExtResource("4_7jxxp")
+property_name = "card_type"
+
+[node name="SelectableIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0.383333, 1, 0, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_57ahb")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_ouusk")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("5_erwxd")
+property_name = "image"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(208, 80)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "title"
+script = ExtResource("4_7jxxp")
+property_name = "title"
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Description"
+script = ExtResource("4_7jxxp")
+property_name = "description"
+
+[node name="NextStageLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "next stage"
+script = ExtResource("4_7jxxp")
+property_name = "next_stage_description"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 
-[node name="Checkmark" type="Sprite2D" parent="."]
-modulate = Color(0, 0.48, 0.088, 1)
-position = Vector2(107, 9)
-texture = ExtResource("1_57ahb")
-
 [node name="Selectable" type="Node" parent="."]
 script = ExtResource("2_u8iu0")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="NextStageLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
 
 [connection signal="pressed" from="Button" to="Selectable" method="toggle_selection"]

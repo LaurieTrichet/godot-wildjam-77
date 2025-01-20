@@ -4,8 +4,8 @@ class_name Selectable
 
 signal selected(card_node: Node, value: bool)
 
-@onready var checkmark: Sprite2D = $"../Checkmark"
 @onready var button: Button = $"../Button"
+@onready var selectable_icon: Node = %SelectableIcon
 
 var disabled: bool:
 	set(value):
@@ -16,7 +16,7 @@ var disabled: bool:
 
 var checked: bool : 
 	set(value):
-		checkmark.visible = value
+		selectable_icon.visible = value
 		checked = value
 
 
