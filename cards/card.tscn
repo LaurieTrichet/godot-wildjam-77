@@ -2,15 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://ce5mycisrfevf" path="res://cards/checkmark.png" id="1_57ahb"]
 [ext_resource type="Script" path="res://cards/card.gd" id="1_dmbbn"]
-[ext_resource type="Resource" uid="uid://crmcya5nvr4gk" path="res://cards/data/fire_salamander_adult.tres" id="2_k3oyj"]
+[ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://cards/data/fire_salamander_egg.tres" id="2_fcxfm"]
 [ext_resource type="Script" path="res://cards/selectable.gd" id="2_u8iu0"]
 [ext_resource type="Script" path="res://cards/display_card_property.gd" id="4_7jxxp"]
 [ext_resource type="Script" path="res://cards/set_card_image.gd" id="5_erwxd"]
 [ext_resource type="Texture2D" uid="uid://di4p2o7jp64gr" path="res://textures/fire_salamander_adult.png" id="6_ouusk"]
 
 [sub_resource type="Gradient" id="Gradient_6t1ac"]
-offsets = PackedFloat32Array(0, 0.25, 1)
-colors = PackedColorArray(1, 0.9715, 0.81, 1, 0.78, 0.721333, 0.78, 1, 0.855026, 0.795589, 0.603711, 1)
+colors = PackedColorArray(0.81, 0.825833, 1, 1, 0.695697, 0.801849, 0.980791, 1)
 metadata/_snap_enabled = true
 metadata/_snap_count = 16
 
@@ -25,7 +24,7 @@ offset_right = 255.0
 offset_bottom = 331.0
 size_flags_horizontal = 4
 script = ExtResource("1_dmbbn")
-card_data = ExtResource("2_k3oyj")
+card_data = ExtResource("2_fcxfm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2

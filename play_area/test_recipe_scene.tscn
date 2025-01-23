@@ -1,18 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://ykhkmcg0j1g8"]
+[gd_scene load_steps=16 format=3 uid="uid://ctyybayseolrk"]
 
-[ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
-[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/card.tscn" id="3_0ncv4"]
-[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="3_cleij"]
-[ext_resource type="Script" path="res://recipes/recipe_holder.gd" id="4_kel73"]
-[ext_resource type="Script" path="res://play_area/check_recipe.gd" id="4_oh5qn"]
-[ext_resource type="Script" path="res://play_area/tutorial_1.gd" id="4_xju2m"]
-[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_7m2bw"]
-[ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="5_pbdl8"]
-[ext_resource type="Script" path="res://play_area/open_pack.gd" id="5_qjk1h"]
-[ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="8_uw2u2"]
+[ext_resource type="Script" path="res://play_area/open_pack.gd" id="1_hw4gq"]
+[ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_gniyf"]
+[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/card.tscn" id="3_407ca"]
+[ext_resource type="Script" path="res://recipes/recipe_holder.gd" id="4_aetsk"]
+[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_7mihu"]
+[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="6_ywjk5"]
+[ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="7_l5e3b"]
+[ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="8_psfef"]
+[ext_resource type="Script" path="res://play_area/check_recipe.gd" id="9_kghtm"]
+[ext_resource type="Script" path="res://play_area/tutorial_1.gd" id="10_oi6r8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
-atlas = ExtResource("2_wmoj5")
+atlas = ExtResource("2_gniyf")
 region = Rect2(0, 0, 140, 190)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8dcmi"]
@@ -62,7 +62,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="OpenPack" type="Node" parent="MainLayout/OpenPackPanelContainer" node_paths=PackedStringArray("card_pack")]
-script = ExtResource("5_qjk1h")
+script = ExtResource("1_hw4gq")
 card_pack = NodePath("../VBoxContainer/CardPack")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/OpenPackPanelContainer"]
@@ -88,28 +88,28 @@ text = "Open"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CardEgg" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["egg", "salamander"] instance=ExtResource("3_0ncv4")]
+[node name="CardEgg" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["egg", "salamander"] instance=ExtResource("3_407ca")]
 layout_mode = 2
-script = ExtResource("4_kel73")
+script = ExtResource("4_aetsk")
 recipe = null
 
 [node name="RecipeHolder" type="Node" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardEgg"]
-script = ExtResource("4_kel73")
-recipe = ExtResource("5_7m2bw")
+script = ExtResource("4_aetsk")
+recipe = ExtResource("5_7mihu")
 
-[node name="CardFood" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
+[node name="CardFood" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_407ca")]
 layout_mode = 2
 
 [node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood" index="0"]
 texture = SubResource("AtlasTexture_e3ipw")
 
-[node name="CardFood2" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["resources", "time"] instance=ExtResource("3_0ncv4")]
+[node name="CardFood2" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["resources", "time"] instance=ExtResource("3_407ca")]
 layout_mode = 2
 
 [node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood2" index="0"]
 texture = SubResource("AtlasTexture_8ieng")
 
-[node name="CardFood3" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
+[node name="CardFood3" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_407ca")]
 layout_mode = 2
 
 [node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood3" index="0"]
@@ -150,7 +150,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer/CenterContainer"]
 layout_mode = 2
-texture = ExtResource("3_cleij")
+texture = ExtResource("6_ywjk5")
 
 [node name="CardsContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
 unique_name_in_owner = true
@@ -177,16 +177,16 @@ disabled = true
 text = "Feed"
 
 [node name="MoveSelectedCards" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("5_pbdl8")
+script = ExtResource("7_l5e3b")
 
 [node name="RouteRecipeComponents" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("8_uw2u2")
+script = ExtResource("8_psfef")
 
 [node name="CheckRecipe" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("4_oh5qn")
+script = ExtResource("9_kghtm")
 
 [node name="Tutorial1" type="Node" parent="."]
-script = ExtResource("4_xju2m")
+script = ExtResource("10_oi6r8")
 
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="MainLayout/OpenPackPanelContainer/OpenPack" method="do"]
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="send_to_hand"]

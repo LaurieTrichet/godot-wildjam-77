@@ -7,6 +7,4 @@
 script = ExtResource("1_67jhr")
 type = 0
 title = "Adult fire salamander"
-description = "Can be released"
-next_stage_description = ""
 image = ExtResource("1_e0c7h")

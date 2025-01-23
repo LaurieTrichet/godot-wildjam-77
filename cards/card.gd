@@ -8,6 +8,5 @@ signal updated(card_data: CardData)
 	set(value):
 		card_data = value
 
-
 func _ready() -> void:
 	updated.emit(card_data)
