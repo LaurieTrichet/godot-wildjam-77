@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://ykhkmcg0j1g8"]
 
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
-[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/card.tscn" id="3_0ncv4"]
+[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="3_0ncv4"]
 [ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="3_cleij"]
 [ext_resource type="Script" path="res://recipes/recipe_holder.gd" id="4_kel73"]
 [ext_resource type="Script" path="res://play_area/check_recipe.gd" id="4_oh5qn"]

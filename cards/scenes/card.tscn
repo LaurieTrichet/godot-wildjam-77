@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqomndebwjgmn"]
 
 [ext_resource type="Texture2D" uid="uid://ce5mycisrfevf" path="res://cards/checkmark.png" id="1_57ahb"]
-[ext_resource type="Script" path="res://cards/card.gd" id="1_dmbbn"]
-[ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://cards/data/fire_salamander_egg.tres" id="2_fcxfm"]
 [ext_resource type="Script" path="res://cards/selectable.gd" id="2_u8iu0"]
-[ext_resource type="Script" path="res://cards/display_card_property.gd" id="4_7jxxp"]
+[ext_resource type="Texture2D" uid="uid://bos38x5lhf1jb" path="res://textures/blank_panel.png" id="3_rojd2"]
+[ext_resource type="Script" path="res://cards/show_resource_property.gd" id="4_7jxxp"]
+[ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="5_b1s70"]
 [ext_resource type="Script" path="res://cards/set_card_image.gd" id="5_erwxd"]
-[ext_resource type="Texture2D" uid="uid://di4p2o7jp64gr" path="res://textures/fire_salamander_adult.png" id="6_ouusk"]
+[ext_resource type="Script" path="res://recipes/resource_holder.gd" id="7_6jdvv"]
 
 [sub_resource type="Gradient" id="Gradient_6t1ac"]
 colors = PackedColorArray(0.81, 0.825833, 1, 1, 0.695697, 0.801849, 0.980791, 1)
@@ -23,8 +23,6 @@ offset_top = 1.0
 offset_right = 255.0
 offset_bottom = 331.0
 size_flags_horizontal = 4
-script = ExtResource("1_dmbbn")
-card_data = ExtResource("2_fcxfm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
@@ -67,7 +65,7 @@ custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("6_ouusk")
+texture = ExtResource("3_rojd2")
 expand_mode = 3
 stretch_mode = 5
 script = ExtResource("5_erwxd")
@@ -80,26 +78,10 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="TitleLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" node_paths=PackedStringArray("resource_holder") instance=ExtResource("5_b1s70")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "title"
-script = ExtResource("4_7jxxp")
-property_name = "title"
-
-[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Description"
-script = ExtResource("4_7jxxp")
-property_name = "description"
-
-[node name="NextStageLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "next stage"
-script = ExtResource("4_7jxxp")
-property_name = "next_stage_description"
+resource_holder = NodePath("../../../../../CardResourceHolder")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -107,5 +89,8 @@ theme_type_variation = &"FlatButton"
 
 [node name="Selectable" type="Node" parent="."]
 script = ExtResource("2_u8iu0")
+
+[node name="CardResourceHolder" type="Node" parent="."]
+script = ExtResource("7_6jdvv")
 
 [connection signal="pressed" from="Button" to="Selectable" method="toggle_selection"]

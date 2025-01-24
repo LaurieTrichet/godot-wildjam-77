@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://c6nk73m7fsyq4"]
+
+[ext_resource type="Texture2D" uid="uid://yoau3oc1k2vd" path="res://textures/hourglass.png" id="1_fpf73"]
+[ext_resource type="Script" path="res://cards/card_data.gd" id="3_ve3oe"]
+
+[resource]
+script = ExtResource("3_ve3oe")
+type = 2
+title = "Time"
+image = ExtResource("1_fpf73")
