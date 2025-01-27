@@ -91,7 +91,6 @@ layout_mode = 2
 [node name="CardEgg" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["egg", "salamander"] instance=ExtResource("3_0ncv4")]
 layout_mode = 2
 script = ExtResource("4_kel73")
-recipe = null
 
 [node name="RecipeHolder" type="Node" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardEgg"]
 script = ExtResource("4_kel73")

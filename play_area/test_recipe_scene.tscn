@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctyybayseolrk"]
+[gd_scene load_steps=12 format=3 uid="uid://ctyybayseolrk"]
 
 [ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="2_5250x"]
 [ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://cards/data/fire_salamander_egg.tres" id="3_taoat"]
 [ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_7mihu"]
 [ext_resource type="PackedScene" uid="uid://dql3pwhkx18f" path="res://cards/scenes/card_resource.tscn" id="5_tsdum"]
 [ext_resource type="Resource" uid="uid://c6nk73m7fsyq4" path="res://cards/data/time.tres" id="6_chae3"]
+[ext_resource type="Script" path="res://cards/scripts/set_card_text.gd" id="6_r8hyo"]
 [ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="6_ywjk5"]
 [ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://cards/data/time_resource.tres" id="7_hf8mo"]
 [ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="7_l5e3b"]
@@ -89,6 +90,12 @@ layout_mode = 2
 [node name="CardEgg" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" instance=ExtResource("2_5250x")]
 layout_mode = 2
 
+[node name="TypeLabel" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardEgg/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+unique_name_in_owner = false
+modulate = Color(1, 1, 1, 1)
+custom_minimum_size = Vector2(0, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
 [node name="CardResourceHolder" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardEgg" index="4"]
 resource = ExtResource("3_taoat")
 
@@ -97,6 +104,13 @@ resource = ExtResource("5_7mihu")
 
 [node name="CardTime" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" instance=ExtResource("5_tsdum")]
 layout_mode = 2
+
+[node name="TypeLabel" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardTime/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "type"
+script = ExtResource("6_r8hyo")
+property_name = "card_type"
 
 [node name="CardResourceHolder" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardTime" index="4"]
 resource = ExtResource("6_chae3")

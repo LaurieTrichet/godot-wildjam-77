@@ -16,10 +16,12 @@ func do() -> void:
 	var recipe_resource_holder: ResourceHolder = card_node.find_child("RecipeResourceHolder")
 	if !recipe_resource_holder:
 		printerr("missing node named RecipeResourceHolder in Card: ", card_node.name)
+		return
 
 	var recipe = recipe_resource_holder.resource
 	if !recipe:
 		printerr("missing resource in recipe holder for Card: ",card_node.name)
+		return
 
-#TODO prep the resources cards.
-	available.emit(recipe, cards)
+	var resource_data_list = cards.map(func (card: Node): return card.find_child("ResourceHolder").resource)
+	available.emit(recipe, resource_data_list)

@@ -8,3 +8,7 @@ signal updated(resource: Resource)
 	set(value):
 		resource = value
 		updated.emit(resource)
+
+
+func _ready() -> void:
+	updated.emit(resource)

@@ -1,4 +1,6 @@
-extends Label
+extends Control
+
+class_name SetCardProperty
 
 @export var property_name: String
 @export var resource_holder: ResourceHolder
@@ -10,12 +12,5 @@ func _ready() -> void:
 		printerr("no resource attached for property: ", property_name)
 
 
-func do(resource: Resource):
-	visible = false
-	var value = resource.get(property_name)
-	print(property_name, value)
-	if value and value is String:
-		visible = ! value.is_empty()
-		if value:
-			text = value
-	
+func do(card_data: Resource)-> void:
+	pass 

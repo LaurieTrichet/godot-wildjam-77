@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqomndebwjgmn"]
+[gd_scene load_steps=9 format=3 uid="uid://dqomndebwjgmn"]
 
 [ext_resource type="Texture2D" uid="uid://ce5mycisrfevf" path="res://cards/checkmark.png" id="1_57ahb"]
-[ext_resource type="Script" path="res://cards/selectable.gd" id="2_u8iu0"]
+[ext_resource type="Script" path="res://cards/scripts/selectable.gd" id="2_u8iu0"]
 [ext_resource type="Texture2D" uid="uid://bos38x5lhf1jb" path="res://textures/blank_panel.png" id="3_rojd2"]
-[ext_resource type="Script" path="res://cards/show_resource_property.gd" id="4_7jxxp"]
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="5_b1s70"]
-[ext_resource type="Script" path="res://cards/set_card_image.gd" id="5_erwxd"]
+[ext_resource type="Script" path="res://cards/scripts/set_card_image.gd" id="5_erwxd"]
 [ext_resource type="Script" path="res://recipes/resource_holder.gd" id="7_6jdvv"]
 
 [sub_resource type="Gradient" id="Gradient_6t1ac"]
@@ -44,13 +43,6 @@ theme_override_constants/separation = 16
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "type"
-script = ExtResource("4_7jxxp")
-property_name = "card_type"
-
 [node name="SelectableIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 modulate = Color(0.383333, 1, 0, 1)
@@ -60,7 +52,7 @@ texture = ExtResource("1_57ahb")
 expand_mode = 4
 stretch_mode = 4
 
-[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="Image" type="TextureRect" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("resource_holder")]
 custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -70,6 +62,7 @@ expand_mode = 3
 stretch_mode = 5
 script = ExtResource("5_erwxd")
 property_name = "image"
+resource_holder = NodePath("../../../CardResourceHolder")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(208, 80)

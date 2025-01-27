@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="2_tbape"]
 [ext_resource type="Script" path="res://recipes/resource_holder.gd" id="3_3xpj0"]
 
-[node name="Card" instance=ExtResource("1_3idia")]
+[node name="Card" groups=["salamander"] instance=ExtResource("1_3idia")]
 
-[node name="TypeLabel" parent="MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
 text = "Salamander"
-script = null
 
 [node name="DescriptionLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="1" node_paths=PackedStringArray("resource_holder") instance=ExtResource("2_tbape")]
 layout_mode = 2

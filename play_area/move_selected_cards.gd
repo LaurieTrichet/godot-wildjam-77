@@ -26,7 +26,7 @@ func triage_card_move_event(card_node: Node, selected: bool):
 
 
 func move_card(card_node: Node):
-	if card_node.is_in_group(&"resources"):
+	if card_node.is_in_group(&"resource"):
 		card_node.reparent(cards_container, false)
 	if card_node.is_in_group(&"salamander"):
 		if salamander_container.get_child_count() > 0:
