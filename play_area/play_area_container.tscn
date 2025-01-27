@@ -64,10 +64,10 @@ script = ExtResource("8_fdjgd")
 [node name="RouteRecipeComponents" type="Node" parent="."]
 script = ExtResource("9_vikhd")
 
-[node name="CheckRecipe" type="Node" parent="."]
+[node name="CheckRecipeValidity" type="Node" parent="."]
 script = ExtResource("10_t3ufc")
 
 [connection signal="done" from="MoveSelectedCards" to="RouteRecipeComponents" method="do"]
-[connection signal="available" from="RouteRecipeComponents" to="CheckRecipe" method="do"]
-[connection signal="is_invalid" from="CheckRecipe" to="FeedButton" method="set_disabled" binds= [true]]
-[connection signal="is_valid" from="CheckRecipe" to="FeedButton" method="set_disabled" binds= [false]]
+[connection signal="available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
+[connection signal="is_invalid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [true]]
+[connection signal="is_valid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [false]]

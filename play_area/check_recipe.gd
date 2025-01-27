@@ -1,6 +1,6 @@
 extends Node
 
-class_name CheckRecipe
+class_name CheckRecipeValidity
 
 signal checked_validity(result: bool)
 signal is_valid
