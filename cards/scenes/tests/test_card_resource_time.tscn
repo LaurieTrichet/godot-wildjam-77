@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://db2350eu328y1"]
+
+[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="1_ryim1"]
+[ext_resource type="Script" path="res://cards/scripts/set_card_text.gd" id="2_8dfb6"]
+[ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="3_7g58i"]
+[ext_resource type="Script" path="res://recipes/resource_holder.gd" id="4_vej2n"]
+[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://cards/data/time_resource.tres" id="6_2yy2e"]
+
+[node name="TimeCard" groups=["resource"] instance=ExtResource("1_ryim1")]
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1" node_paths=PackedStringArray("resource_holder")]
+layout_mode = 2
+text = "Type"
+script = ExtResource("2_8dfb6")
+property_name = "card_type"
+resource_holder = NodePath("../../../../ResourceHolder")
+
+[node name="DescriptionLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="1" node_paths=PackedStringArray("resource_holder") instance=ExtResource("3_7g58i")]
+layout_mode = 2
+property_name = "description"
+resource_holder = NodePath("../../../../../ResourceHolder")
+
+[node name="ResourceHolder" type="Node" parent="." index="5"]
+script = ExtResource("4_vej2n")
+resource = ExtResource("6_2yy2e")

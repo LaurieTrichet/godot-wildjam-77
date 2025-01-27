@@ -4,6 +4,8 @@ class_name Selectable
 
 signal selected(card_node: Node, value: bool)
 
+@export var disabled_on_start: bool = true
+
 @onready var button: Button = $"../Button"
 @onready var selectable_icon: Node = %SelectableIcon
 
@@ -22,9 +24,10 @@ var checked: bool :
 
 func _ready() -> void:
 	checked = false
-	disabled = true
+	disabled = disabled_on_start
 
 
 func toggle_selection():
+	print("-> enter toggle_selection")
 	checked = !checked
 	selected.emit(get_parent(), checked)

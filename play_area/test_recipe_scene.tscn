@@ -1,16 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctyybayseolrk"]
+[gd_scene load_steps=4 format=3 uid="uid://ctyybayseolrk"]
 
-[ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="2_5250x"]
-[ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://cards/data/fire_salamander_egg.tres" id="3_taoat"]
-[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_7mihu"]
-[ext_resource type="PackedScene" uid="uid://dql3pwhkx18f" path="res://cards/scenes/card_resource.tscn" id="5_tsdum"]
-[ext_resource type="Resource" uid="uid://c6nk73m7fsyq4" path="res://cards/data/time.tres" id="6_chae3"]
-[ext_resource type="Script" path="res://cards/scripts/set_card_text.gd" id="6_r8hyo"]
-[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="6_ywjk5"]
-[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://cards/data/time_resource.tres" id="7_hf8mo"]
-[ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="7_l5e3b"]
-[ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="8_psfef"]
-[ext_resource type="Script" path="res://play_area/check_recipe.gd" id="9_kghtm"]
+[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/play_area_container.tscn" id="1_oa2di"]
+[ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="2_eaa45"]
+[ext_resource type="PackedScene" uid="uid://db5ucd681tr5y" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="3_hsvy1"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,10 +14,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -540.0
-offset_top = -360.0
-offset_right = 540.0
-offset_bottom = 360.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -39,103 +31,14 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/TopMenu"]
 layout_mode = 2
 
-[node name="PlayAreaContainer" type="VBoxContainer" parent="MainLayout"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-metadata/_edit_use_anchors_ = true
-
-[node name="SelectedCardsArea" type="PanelContainer" parent="MainLayout/PlayAreaContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainLayout/PlayAreaContainer/SelectedCardsArea"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Place your card here."
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea"]
-layout_mode = 2
-
-[node name="TargetCardContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="CenterContainer" type="CenterContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer/CenterContainer"]
-layout_mode = 2
-texture = ExtResource("6_ywjk5")
-
-[node name="InputRecipeCardsContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="HandsCardsArea" type="PanelContainer" parent="MainLayout/PlayAreaContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainLayout/PlayAreaContainer/HandsCardsArea"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Your hand"
-
-[node name="HandContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/HandsCardsArea"]
+[node name="PlayAreaContainer" parent="MainLayout" instance=ExtResource("1_oa2di")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CardEgg" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" instance=ExtResource("2_5250x")]
+[node name="TimeCard" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" index="0" instance=ExtResource("2_eaa45")]
 layout_mode = 2
 
-[node name="TypeLabel" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardEgg/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-unique_name_in_owner = false
-modulate = Color(1, 1, 1, 1)
-custom_minimum_size = Vector2(0, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="CardResourceHolder" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardEgg" index="4"]
-resource = ExtResource("3_taoat")
-
-[node name="RecipeResourceHolder" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardEgg" index="5"]
-resource = ExtResource("5_7mihu")
-
-[node name="CardTime" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" instance=ExtResource("5_tsdum")]
+[node name="EggCard" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" index="1" instance=ExtResource("3_hsvy1")]
 layout_mode = 2
 
-[node name="TypeLabel" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardTime/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "type"
-script = ExtResource("6_r8hyo")
-property_name = "card_type"
-
-[node name="CardResourceHolder" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardTime" index="4"]
-resource = ExtResource("6_chae3")
-
-[node name="ResourceHolder" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardTime" index="5"]
-resource = ExtResource("7_hf8mo")
-
-[node name="FeedButton" type="Button" parent="MainLayout/PlayAreaContainer"]
-custom_minimum_size = Vector2(190, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-disabled = true
-text = "Feed"
-
-[node name="MoveSelectedCards" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("7_l5e3b")
-
-[node name="RouteRecipeComponents" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("8_psfef")
-
-[node name="CheckRecipe" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("9_kghtm")
-
-[connection signal="done" from="MainLayout/PlayAreaContainer/MoveSelectedCards" to="MainLayout/PlayAreaContainer/RouteRecipeComponents" method="do"]
-[connection signal="available" from="MainLayout/PlayAreaContainer/RouteRecipeComponents" to="MainLayout/PlayAreaContainer/CheckRecipe" method="do"]
-
-[editable path="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardEgg"]
-[editable path="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer/CardTime"]
+[editable path="MainLayout/PlayAreaContainer"]

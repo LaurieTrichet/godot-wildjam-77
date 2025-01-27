@@ -6,22 +6,51 @@ signal available(recipe: Recipe, cards: Array[ResourceData])
 @onready var target_card_container: HBoxContainer = %TargetCardContainer
 
 
-func do() -> void:
+func do(_card_node: Node) -> void:
 	var cards = input_recipe_cards_container.get_children()
 	
 	if cards.is_empty() or target_card_container.get_child_count() == 0:
 		return
 	
-	var card_node =  target_card_container.get_children().front()
-	var recipe_resource_holder: ResourceHolder = card_node.find_child("RecipeResourceHolder")
-	if !recipe_resource_holder:
-		printerr("missing node named RecipeResourceHolder in Card: ", card_node.name)
-		return
-
-	var recipe = recipe_resource_holder.resource
+	var recipe: Recipe = _get_recipe()
 	if !recipe:
-		printerr("missing resource in recipe holder for Card: ",card_node.name)
+		printerr("missing resource in recipe holder for Card: ", target_card_container.get_children())
 		return
 
-	var resource_data_list = cards.map(func (card: Node): return card.find_child("ResourceHolder").resource)
+	var resource_data_list : Array[ResourceData] = _get_resources(cards)
+	
 	available.emit(recipe, resource_data_list)
+
+
+func _get_recipe():
+	var target_card_node =  target_card_container.get_children().front()
+	var recipe_resource_holder: ResourceHolder = target_card_node.find_child("RecipeResourceHolder")
+	if !recipe_resource_holder:
+		printerr("missing node named RecipeResourceHolder in Card: ", target_card_node.name)
+		return
+
+	if !recipe_resource_holder.resource or (!recipe_resource_holder.resource is Recipe):
+		printerr("missing Recipe resource in recipe holder for Card: ",target_card_node.name)
+		return
+		
+	return recipe_resource_holder.resource as Recipe
+
+
+func _get_resources(cards: Array[Node]) -> Array[ResourceData]:
+	var results: Array[ResourceData] = []
+	for card in cards:
+		var resource_data := _get_resource_data_for_node(card)
+		if resource_data:
+			results.append(resource_data)
+		else:
+			printerr("resource data is null")
+	return results
+
+
+func _get_resource_data_for_node(card: Node) -> ResourceData:
+	var resource_holder = card.find_child("ResourceHolder") as ResourceHolder
+	if !resource_holder.resource or (!resource_holder.resource is ResourceData):
+		printerr("missing ResourceData resource for Card: ",card.name)
+		return
+	
+	return resource_holder.resource as ResourceData

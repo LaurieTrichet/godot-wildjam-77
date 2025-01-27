@@ -2,8 +2,8 @@ extends Node
 
 signal done(card: Node)
 
-@onready var salamander_container: HBoxContainer = %SalamanderContainer
-@onready var cards_container: HBoxContainer = %CardsContainer
+@onready var target_card_container: HBoxContainer = %TargetCardContainer
+@onready var input_cards_container: HBoxContainer = %InputRecipeCardsContainer
 @onready var hand_container: HBoxContainer = %HandContainer
 
 
@@ -27,12 +27,12 @@ func triage_card_move_event(card_node: Node, selected: bool):
 
 func move_card(card_node: Node):
 	if card_node.is_in_group(&"resource"):
-		card_node.reparent(cards_container, false)
+		card_node.reparent(input_cards_container, false)
 	if card_node.is_in_group(&"salamander"):
-		if salamander_container.get_child_count() > 0:
-			var card_to_move = salamander_container.get_child(0)
+		if target_card_container.get_child_count() > 0:
+			var card_to_move = target_card_container.get_child(0)
 			card_to_move.reparent(hand_container, false)
-		card_node.reparent(salamander_container, false)
+		card_node.reparent(target_card_container, false)
 
 
 func send_back_to_hand(card_node: Node):

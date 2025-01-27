@@ -62,7 +62,7 @@ expand_mode = 3
 stretch_mode = 5
 script = ExtResource("5_erwxd")
 property_name = "image"
-resource_holder = NodePath("../../../CardResourceHolder")
+resource_holder = NodePath("../../../CardDataHolder")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(208, 80)
@@ -74,16 +74,18 @@ layout_mode = 2
 [node name="TitleLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" node_paths=PackedStringArray("resource_holder") instance=ExtResource("5_b1s70")]
 unique_name_in_owner = true
 layout_mode = 2
-resource_holder = NodePath("../../../../../CardResourceHolder")
+resource_holder = NodePath("../../../../../CardDataHolder")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
+flat = true
 
 [node name="Selectable" type="Node" parent="."]
 script = ExtResource("2_u8iu0")
+disabled_on_start = false
 
-[node name="CardResourceHolder" type="Node" parent="."]
+[node name="CardDataHolder" type="Node" parent="."]
 script = ExtResource("7_6jdvv")
 
 [connection signal="pressed" from="Button" to="Selectable" method="toggle_selection"]

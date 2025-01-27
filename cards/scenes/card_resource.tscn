@@ -19,5 +19,8 @@ layout_mode = 2
 property_name = "description"
 resource_holder = NodePath("../../../../../ResourceHolder")
 
+[node name="Selectable" parent="." index="3"]
+disabled_on_start = true
+
 [node name="ResourceHolder" type="Node" parent="." index="5"]
 script = ExtResource("3_xpblm")

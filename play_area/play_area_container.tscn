@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfwf3bbwvdi2l"]
+
+[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="1_olttw"]
+[ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="8_fdjgd"]
+[ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="9_vikhd"]
+[ext_resource type="Script" path="res://play_area/check_recipe.gd" id="10_t3ufc"]
+
+[node name="PlayAreaContainer" type="VBoxContainer"]
+size_flags_horizontal = 6
+size_flags_vertical = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectedCardsArea" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SelectedCardsArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Place your card here."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectedCardsArea"]
+layout_mode = 2
+
+[node name="TargetCardContainer" type="HBoxContainer" parent="SelectedCardsArea/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="SelectedCardsArea/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SelectedCardsArea/HBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_olttw")
+
+[node name="InputRecipeCardsContainer" type="HBoxContainer" parent="SelectedCardsArea/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HandsCardsArea" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HandsCardsArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Your hand"
+
+[node name="HandContainer" type="HBoxContainer" parent="HandsCardsArea"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FeedButton" type="Button" parent="."]
+custom_minimum_size = Vector2(190, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "Feed"
+
+[node name="MoveSelectedCards" type="Node" parent="."]
+script = ExtResource("8_fdjgd")
+
+[node name="RouteRecipeComponents" type="Node" parent="."]
+script = ExtResource("9_vikhd")
+
+[node name="CheckRecipe" type="Node" parent="."]
+script = ExtResource("10_t3ufc")
+
+[connection signal="done" from="MoveSelectedCards" to="RouteRecipeComponents" method="do"]
+[connection signal="available" from="RouteRecipeComponents" to="CheckRecipe" method="do"]
+[connection signal="is_invalid" from="CheckRecipe" to="FeedButton" method="set_disabled" binds= [true]]
+[connection signal="is_valid" from="CheckRecipe" to="FeedButton" method="set_disabled" binds= [false]]

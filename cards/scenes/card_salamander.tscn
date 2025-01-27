@@ -20,5 +20,8 @@ layout_mode = 2
 property_name = "next_stage"
 resource_holder = NodePath("../../../../../RecipeResourceHolder")
 
+[node name="Selectable" parent="." index="3"]
+disabled_on_start = true
+
 [node name="RecipeResourceHolder" type="Node" parent="." index="5"]
 script = ExtResource("3_3xpj0")
