@@ -1,33 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://ykhkmcg0j1g8"]
+[gd_scene load_steps=8 format=3 uid="uid://ykhkmcg0j1g8"]
 
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
-[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="3_0ncv4"]
-[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="3_cleij"]
-[ext_resource type="Script" path="res://recipes/recipe_holder.gd" id="4_kel73"]
-[ext_resource type="Script" path="res://play_area/check_recipe.gd" id="4_oh5qn"]
+[ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_ustmc"]
+[ext_resource type="PackedScene" uid="uid://db5ucd681tr5y" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="4_nmsio"]
 [ext_resource type="Script" path="res://play_area/tutorial_1.gd" id="4_xju2m"]
-[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_7m2bw"]
-[ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="5_pbdl8"]
 [ext_resource type="Script" path="res://play_area/open_pack.gd" id="5_qjk1h"]
-[ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="8_uw2u2"]
+[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/play_area_container.tscn" id="6_mes85"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
 atlas = ExtResource("2_wmoj5")
 region = Rect2(0, 0, 140, 190)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8dcmi"]
-load_path = "res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3ipw"]
-atlas = SubResource("CompressedTexture2D_8dcmi")
-region = Rect2(420, 1710, 140, 190)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g0s0h"]
-load_path = "res://.godot/imported/playingCards.png-1f9d546769ce16ee91a682d53fbc21f4.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ieng"]
-atlas = SubResource("CompressedTexture2D_g0s0h")
-region = Rect2(0, 570, 140, 190)
 
 [node name="Node2D" type="Node2D"]
 
@@ -88,111 +70,26 @@ text = "Open"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CardEgg" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["egg", "salamander"] instance=ExtResource("3_0ncv4")]
-layout_mode = 2
-script = ExtResource("4_kel73")
-
-[node name="RecipeHolder" type="Node" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardEgg"]
-script = ExtResource("4_kel73")
-recipe = ExtResource("5_7m2bw")
-
-[node name="CardFood" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
+[node name="TimeCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" instance=ExtResource("3_ustmc")]
 layout_mode = 2
 
-[node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood" index="0"]
-texture = SubResource("AtlasTexture_e3ipw")
-
-[node name="CardFood2" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["resources", "time"] instance=ExtResource("3_0ncv4")]
+[node name="EggCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" instance=ExtResource("4_nmsio")]
 layout_mode = 2
-
-[node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood2" index="0"]
-texture = SubResource("AtlasTexture_8ieng")
-
-[node name="CardFood3" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["food", "resources"] instance=ExtResource("3_0ncv4")]
-layout_mode = 2
-
-[node name="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood3" index="0"]
-texture = SubResource("AtlasTexture_e3ipw")
 
 [node name="AcceptCardsButton" type="Button" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Add to hand."
 
-[node name="PlayAreaContainer" type="VBoxContainer" parent="MainLayout"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-metadata/_edit_use_anchors_ = true
-
-[node name="SelectedCardsArea" type="PanelContainer" parent="MainLayout/PlayAreaContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainLayout/PlayAreaContainer/SelectedCardsArea"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Place your card here."
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea"]
-layout_mode = 2
-
-[node name="SalamanderContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="CenterContainer" type="CenterContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer/CenterContainer"]
-layout_mode = 2
-texture = ExtResource("3_cleij")
-
-[node name="CardsContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/SelectedCardsArea/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="HandsCardsArea" type="PanelContainer" parent="MainLayout/PlayAreaContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MainLayout/PlayAreaContainer/HandsCardsArea"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Your hand"
-
-[node name="HandContainer" type="HBoxContainer" parent="MainLayout/PlayAreaContainer/HandsCardsArea"]
+[node name="PlayAreaContainer" parent="MainLayout" instance=ExtResource("6_mes85")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="FeedButton" type="Button" parent="MainLayout/PlayAreaContainer"]
-custom_minimum_size = Vector2(190, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-disabled = true
-text = "Feed"
-
-[node name="MoveSelectedCards" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("5_pbdl8")
-
-[node name="RouteRecipeComponents" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("8_uw2u2")
-
-[node name="CheckRecipe" type="Node" parent="MainLayout/PlayAreaContainer"]
-script = ExtResource("4_oh5qn")
-
-[node name="Tutorial1" type="Node" parent="."]
+[node name="Tutorial1" type="Node" parent="." node_paths=PackedStringArray("hand_container")]
 script = ExtResource("4_xju2m")
+hand_container = NodePath("../MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer")
 
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="MainLayout/OpenPackPanelContainer/OpenPack" method="do"]
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="send_to_hand"]
-[connection signal="done" from="MainLayout/PlayAreaContainer/MoveSelectedCards" to="MainLayout/PlayAreaContainer/RouteRecipeComponents" method="do"]
-[connection signal="available" from="MainLayout/PlayAreaContainer/RouteRecipeComponents" to="MainLayout/PlayAreaContainer/CheckRecipe" method="do"]
 
-[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardEgg"]
-[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood"]
-[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood2"]
-[editable path="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer/CardFood3"]
+[editable path="MainLayout/PlayAreaContainer"]
