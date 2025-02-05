@@ -74,5 +74,6 @@ script = ExtResource("5_okk0g")
 [connection signal="child_entered_tree" from="HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
 [connection signal="done" from="MoveSelectedCards" to="RouteRecipeComponents" method="do"]
 [connection signal="available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
+[connection signal="invalid" from="RouteRecipeComponents" to="FeedButton" method="set_disabled" binds= [true]]
 [connection signal="is_invalid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [true]]
 [connection signal="is_valid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [false]]

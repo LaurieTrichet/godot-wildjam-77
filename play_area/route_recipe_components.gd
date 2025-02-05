@@ -1,6 +1,7 @@
 extends Node
 
 signal available(recipe: Recipe, cards: Array[ResourceData])
+signal invalid
 
 @onready var input_recipe_cards_container: HBoxContainer = %InputRecipeCardsContainer
 @onready var target_card_container: HBoxContainer = %TargetCardContainer
@@ -10,11 +11,13 @@ func do(_card_node: Node) -> void:
 	var cards = input_recipe_cards_container.get_children()
 	
 	if cards.is_empty() or target_card_container.get_child_count() == 0:
+		invalid.emit()
 		return
 	
 	var recipe: Recipe = _get_recipe()
 	if !recipe:
 		printerr("missing resource in recipe holder for Card: ", target_card_container.get_children())
+		invalid.emit()
 		return
 
 	var resource_data_list : Array[ResourceData] = _get_resources(cards)

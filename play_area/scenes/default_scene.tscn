@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ykhkmcg0j1g8"]
+[gd_scene load_steps=9 format=3 uid="uid://ykhkmcg0j1g8"]
 
+[ext_resource type="Script" path="res://play_area/move_children_to_container.gd" id="2_4nac3"]
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
 [ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_ustmc"]
 [ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="4_jbw02"]
@@ -47,6 +48,11 @@ layout_mode = 2
 script = ExtResource("5_qjk1h")
 card_pack = NodePath("../VBoxContainer/CardPack")
 
+[node name="MoveChildrenToContainer" type="Node" parent="MainLayout/OpenPackPanelContainer" node_paths=PackedStringArray("from_container", "to_container")]
+script = ExtResource("2_4nac3")
+from_container = NodePath("../VBoxContainer/PackContainer")
+to_container = NodePath("../../PlayAreaContainer/HandsCardsArea/HandContainer")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/OpenPackPanelContainer"]
 layout_mode = 2
 
@@ -86,11 +92,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 1
 
-[node name="Tutorial1" type="Node" parent="." node_paths=PackedStringArray("hand_container")]
+[node name="Tutorial1" type="Node" parent="."]
 script = ExtResource("4_xju2m")
-hand_container = NodePath("../MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer")
 
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="MainLayout/OpenPackPanelContainer/OpenPack" method="do"]
-[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="send_to_hand"]
+[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="MainLayout/OpenPackPanelContainer/MoveChildrenToContainer" method="do"]
+[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="activate_play_area"]
 
 [editable path="MainLayout/PlayAreaContainer"]
