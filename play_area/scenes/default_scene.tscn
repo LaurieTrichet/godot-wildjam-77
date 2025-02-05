@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
 [ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_ustmc"]
-[ext_resource type="PackedScene" uid="uid://db5ucd681tr5y" path="res://cards/scenes/tests/test_card_salamander_egg__old.tscn" id="4_nmsio"]
+[ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="4_jbw02"]
 [ext_resource type="Script" path="res://play_area/tutorial_1.gd" id="4_xju2m"]
 [ext_resource type="Script" path="res://play_area/open_pack.gd" id="5_qjk1h"]
 [ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/scenes/play_area_container.tscn" id="6_mes85"]
@@ -70,10 +70,10 @@ text = "Open"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TimeCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" instance=ExtResource("3_ustmc")]
+[node name="EggCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" instance=ExtResource("4_jbw02")]
 layout_mode = 2
 
-[node name="EggCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" instance=ExtResource("4_nmsio")]
+[node name="TimeCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" instance=ExtResource("3_ustmc")]
 layout_mode = 2
 
 [node name="AcceptCardsButton" type="Button" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]

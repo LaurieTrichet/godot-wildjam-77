@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="1_igw8a"]
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="2_aumv3"]
-[ext_resource type="Script" path="res://recipes/resource_holder.gd" id="3_avduy"]
+[ext_resource type="Script" path="res://cards/scripts/resource_holder.gd" id="3_avduy"]
 [ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://_data/recipes/egg_recipe.tres" id="4_xuaqr"]
 
 [node name="EggCard" groups=["salamander"] instance=ExtResource("1_igw8a")]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="1_ryim1"]
 [ext_resource type="Script" path="res://cards/scripts/set_card_text.gd" id="2_8dfb6"]
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="3_7g58i"]
-[ext_resource type="Script" path="res://recipes/resource_holder.gd" id="4_vej2n"]
+[ext_resource type="Script" path="res://cards/scripts/resource_holder.gd" id="4_vej2n"]
 [ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resources/time_resource.tres" id="6_2yy2e"]
 
 [node name="TimeCard" groups=["resource"] instance=ExtResource("1_ryim1")]
@@ -19,6 +19,9 @@ resource_holder = NodePath("../../../../ResourceHolder")
 layout_mode = 2
 property_name = "description"
 resource_holder = NodePath("../../../../../ResourceHolder")
+
+[node name="Selectable" parent="." index="3"]
+disabled_on_start = true
 
 [node name="ResourceHolder" type="Node" parent="." index="5"]
 script = ExtResource("4_vej2n")

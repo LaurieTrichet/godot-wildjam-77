@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://cjiv3ld5mp5tg" path="res://_data/next_stages/to_fire_salamander_adult.tres" id="4_70v3c"]
 [ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://_data/recipes/egg_recipe.tres" id="5_p6x4u"]
 
-[node name="Card" instance=ExtResource("1_6pkjy")]
+[node name="EggCard" instance=ExtResource("1_6pkjy")]
 
 [node name="NextStageLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="2"]
 text = "next_stage"

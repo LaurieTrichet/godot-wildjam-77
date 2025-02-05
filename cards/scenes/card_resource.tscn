@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="1_rs1fj"]
 [ext_resource type="Script" path="res://cards/scripts/set_card_text.gd" id="2_67iqv"]
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="2_72khr"]
-[ext_resource type="Script" path="res://recipes/resource_holder.gd" id="3_xpblm"]
+[ext_resource type="Script" path="res://cards/scripts/resource_holder.gd" id="3_xpblm"]
 
 [node name="Card" groups=["resource"] instance=ExtResource("1_rs1fj")]
 

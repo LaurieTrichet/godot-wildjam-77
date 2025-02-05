@@ -20,6 +20,9 @@ func send_to_hand():
 	var cards = pack_container.get_children()
 	cards.map(func (card:Node): card.reparent(hand_container))
 
+func _make_card_selectable(card_node: Node):
+	var selectable = card_node.find_child("Selectable")
+	selectable.disabled = false
 
 func activate_card():
 	pass
