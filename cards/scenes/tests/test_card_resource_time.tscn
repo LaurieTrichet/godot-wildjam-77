@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://cards/scripts/set_card_text.gd" id="2_8dfb6"]
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="3_7g58i"]
 [ext_resource type="Script" path="res://recipes/resource_holder.gd" id="4_vej2n"]
-[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://cards/data/time_resource.tres" id="6_2yy2e"]
+[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resources/time_resource.tres" id="6_2yy2e"]
 
 [node name="TimeCard" groups=["resource"] instance=ExtResource("1_ryim1")]
 

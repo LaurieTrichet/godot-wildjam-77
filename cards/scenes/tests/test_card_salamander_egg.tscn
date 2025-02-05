@@ -1,11 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://csa62ijttcxxm"]
 
 [ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="1_6pkjy"]
-[ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://cards/data/card_data_fire_salamander_egg.tres" id="2_pldtw"]
-[ext_resource type="Resource" uid="uid://crmcya5nvr4gk" path="res://cards/data/card_data_fire_salamander_adult.tres" id="4_7slbw"]
-[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_p6x4u"]
+[ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://_data/animals/card_data_fire_salamander_egg.tres" id="2_pldtw"]
+[ext_resource type="Resource" uid="uid://cjiv3ld5mp5tg" path="res://_data/next_stages/to_fire_salamander_adult.tres" id="4_70v3c"]
+[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://_data/recipes/egg_recipe.tres" id="5_p6x4u"]
 
 [node name="Card" instance=ExtResource("1_6pkjy")]
+
+[node name="NextStageLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="2"]
+text = "next_stage"
 
 [node name="CardDataHolder" parent="." index="4"]
 resource = ExtResource("2_pldtw")
@@ -14,4 +17,4 @@ resource = ExtResource("2_pldtw")
 resource = ExtResource("5_p6x4u")
 
 [node name="NextStageCardDataHolder" parent="." index="6"]
-resource = ExtResource("4_7slbw")
+resource = ExtResource("4_70v3c")

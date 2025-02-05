@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://exomnmffiusw"]
 
 [ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="2_8vwyv"]
-[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="4_6ciib"]
+[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://_data/recipes/egg_recipe.tres" id="4_6ciib"]
 [ext_resource type="PackedScene" uid="uid://dql3pwhkx18f" path="res://cards/scenes/card_resource.tscn" id="5_ea6me"]
-[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://cards/data/time_resource.tres" id="7_k52xa"]
+[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resources/time_resource.tres" id="7_k52xa"]
 
 [node name="Node2D" type="Node2D"]
 

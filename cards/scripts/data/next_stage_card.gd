@@ -9,4 +9,9 @@ class_name NextStageCardData
 
 var next_stage: String:
 	get:
-		return card_data.title
+		return _construct_next_stage()
+
+
+func _construct_next_stage():
+	var template = "Metamorphosis: \n%s" 
+	return template % card_data.title
