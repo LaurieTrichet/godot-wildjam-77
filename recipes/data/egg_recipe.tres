@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=3 format=3 uid="uid://uuh8uspts84f"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3 uid="uid://uuh8uspts84f"]
 
-[ext_resource type="Resource" uid="uid://crmcya5nvr4gk" path="res://cards/data/card_data_fire_salamander_adult.tres" id="1_ee7og"]
 [ext_resource type="Script" path="res://recipes/recipe.gd" id="1_uh1jf"]
 
 [resource]
@@ -8,5 +7,3 @@ script = ExtResource("1_uh1jf")
 data = {
 "time": 1
 }
-card_scene_path = "res://cards/card.tscn"
-card_data = ExtResource("1_ee7og")

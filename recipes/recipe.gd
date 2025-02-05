@@ -3,21 +3,14 @@ extends Resource
 class_name Recipe
 
 @export var data: Dictionary = {}
-@export_file("*.tscn") var card_scene_path: String
-@export var card_data: CardData
 
 var description: String:
 	get:
-		return construct_desccription()
-
-
-var next_stage: String:
-	get:
-		return card_data.title
+		return construct_description()
 	
 
-func construct_desccription() -> String:
-	print ("-ENTER- construct_desccription")
+func construct_description() -> String:
+	print ("-ENTER- construct_description")
 	var items = []
 	for key in data:
 		var value = data[key]

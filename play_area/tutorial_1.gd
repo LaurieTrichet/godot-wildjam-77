@@ -20,5 +20,6 @@ func send_to_hand():
 	var cards = pack_container.get_children()
 	cards.map(func (card:Node): card.reparent(hand_container))
 
+
 func activate_card():
 	pass

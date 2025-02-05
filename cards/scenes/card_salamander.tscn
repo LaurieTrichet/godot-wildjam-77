@@ -18,10 +18,13 @@ resource_holder = NodePath("../../../../../RecipeResourceHolder")
 [node name="NextStageLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="2" node_paths=PackedStringArray("resource_holder") instance=ExtResource("2_tbape")]
 layout_mode = 2
 property_name = "next_stage"
-resource_holder = NodePath("../../../../../RecipeResourceHolder")
+resource_holder = NodePath("../../../../../NextStageCardDataHolder")
 
 [node name="Selectable" parent="." index="3"]
 disabled_on_start = true
 
 [node name="RecipeResourceHolder" type="Node" parent="." index="5"]
+script = ExtResource("3_3xpj0")
+
+[node name="NextStageCardDataHolder" type="Node" parent="." index="6"]
 script = ExtResource("3_3xpj0")

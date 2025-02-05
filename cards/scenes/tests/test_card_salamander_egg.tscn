@@ -1,26 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://db5ucd681tr5y"]
+[gd_scene load_steps=5 format=3 uid="uid://csa62ijttcxxm"]
 
-[ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="1_l7nvo"]
-[ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="2_ufiqd"]
-[ext_resource type="Script" path="res://recipes/resource_holder.gd" id="4_s8jdg"]
+[ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="1_6pkjy"]
+[ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://cards/data/card_data_fire_salamander_egg.tres" id="2_pldtw"]
+[ext_resource type="Resource" uid="uid://crmcya5nvr4gk" path="res://cards/data/card_data_fire_salamander_adult.tres" id="4_7slbw"]
 [ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://recipes/data/egg_recipe.tres" id="5_p6x4u"]
 
-[node name="EggCard" groups=["salamander"] instance=ExtResource("1_l7nvo")]
+[node name="Card" instance=ExtResource("1_6pkjy")]
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-layout_mode = 2
-text = "Salamander"
+[node name="CardDataHolder" parent="." index="4"]
+resource = ExtResource("2_pldtw")
 
-[node name="DescriptionLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="1" node_paths=PackedStringArray("resource_holder") instance=ExtResource("2_ufiqd")]
-layout_mode = 2
-property_name = "description"
-resource_holder = NodePath("../../../../../RecipeResourceHolder")
-
-[node name="NextStageLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="2" node_paths=PackedStringArray("resource_holder") instance=ExtResource("2_ufiqd")]
-layout_mode = 2
-property_name = "next_stage"
-resource_holder = NodePath("../../../../../RecipeResourceHolder")
-
-[node name="RecipeResourceHolder" type="Node" parent="." index="5"]
-script = ExtResource("4_s8jdg")
+[node name="RecipeResourceHolder" parent="." index="5"]
 resource = ExtResource("5_p6x4u")
+
+[node name="NextStageCardDataHolder" parent="." index="6"]
+resource = ExtResource("4_7slbw")
