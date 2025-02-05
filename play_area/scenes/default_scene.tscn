@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="4_jbw02"]
 [ext_resource type="Script" path="res://play_area/tutorial_1.gd" id="4_xju2m"]
 [ext_resource type="Script" path="res://play_area/open_pack.gd" id="5_qjk1h"]
-[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/scenes/play_area_container.tscn" id="6_mes85"]
+[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/components/play_area_container.tscn" id="6_mes85"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
 atlas = ExtResource("2_wmoj5")
@@ -84,6 +84,7 @@ text = "Add to hand."
 [node name="PlayAreaContainer" parent="MainLayout" instance=ExtResource("6_mes85")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 1
 
 [node name="Tutorial1" type="Node" parent="." node_paths=PackedStringArray("hand_container")]
 script = ExtResource("4_xju2m")

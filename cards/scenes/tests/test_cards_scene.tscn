@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://exomnmffiusw"]
+[gd_scene load_steps=3 format=3 uid="uid://exomnmffiusw"]
 
-[ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="2_8vwyv"]
-[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://_data/recipes/egg_recipe.tres" id="4_6ciib"]
-[ext_resource type="PackedScene" uid="uid://dql3pwhkx18f" path="res://cards/scenes/card_resource.tscn" id="5_ea6me"]
-[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resources/time_resource.tres" id="7_k52xa"]
+[ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="1_ila8m"]
+[ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="2_gjoxg"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,23 +26,8 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CardEgg" parent="MainLayout/HandContainer" instance=ExtResource("2_8vwyv")]
+[node name="EggCard" parent="MainLayout/HandContainer" instance=ExtResource("1_ila8m")]
 layout_mode = 2
 
-[node name="Button" parent="MainLayout/HandContainer/CardEgg" index="2"]
-flat = false
-
-[node name="RecipeResourceHolder" parent="MainLayout/HandContainer/CardEgg" index="5"]
-resource = ExtResource("4_6ciib")
-
-[node name="CardTime" parent="MainLayout/HandContainer" instance=ExtResource("5_ea6me")]
+[node name="TimeCard" parent="MainLayout/HandContainer" instance=ExtResource("2_gjoxg")]
 layout_mode = 2
-
-[node name="Button" parent="MainLayout/HandContainer/CardTime" index="2"]
-flat = false
-
-[node name="ResourceHolder" parent="MainLayout/HandContainer/CardTime" index="5"]
-resource = ExtResource("7_k52xa")
-
-[editable path="MainLayout/HandContainer/CardEgg"]
-[editable path="MainLayout/HandContainer/CardTime"]
