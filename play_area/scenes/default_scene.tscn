@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
 [ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_ustmc"]
-[ext_resource type="PackedScene" uid="uid://db5ucd681tr5y" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="4_nmsio"]
+[ext_resource type="PackedScene" uid="uid://db5ucd681tr5y" path="res://cards/scenes/tests/test_card_salamander_egg__old.tscn" id="4_nmsio"]
 [ext_resource type="Script" path="res://play_area/tutorial_1.gd" id="4_xju2m"]
 [ext_resource type="Script" path="res://play_area/open_pack.gd" id="5_qjk1h"]
-[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/play_area_container.tscn" id="6_mes85"]
+[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/scenes/play_area_container.tscn" id="6_mes85"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
 atlas = ExtResource("2_wmoj5")

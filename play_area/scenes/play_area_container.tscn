@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfwf3bbwvdi2l"]
 
-[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/simple_right.png" id="1_olttw"]
+[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/textures/simple_right.png" id="1_olttw"]
 [ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="8_fdjgd"]
 [ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="9_vikhd"]
 [ext_resource type="Script" path="res://play_area/check_recipe.gd" id="10_t3ufc"]

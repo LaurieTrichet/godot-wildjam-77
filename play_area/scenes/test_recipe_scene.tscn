@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctyybayseolrk"]
 
-[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/play_area_container.tscn" id="1_oa2di"]
+[ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/scenes/play_area_container.tscn" id="1_oa2di"]
 [ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="2_eaa45"]
-[ext_resource type="PackedScene" uid="uid://db5ucd681tr5y" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="3_hsvy1"]
+[ext_resource type="PackedScene" uid="uid://db5ucd681tr5y" path="res://cards/scenes/tests/test_card_salamander_egg__old.tscn" id="3_hsvy1"]
 
 [node name="Node2D" type="Node2D"]
 
