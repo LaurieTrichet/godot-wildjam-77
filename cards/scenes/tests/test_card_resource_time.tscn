@@ -21,9 +21,6 @@ layout_mode = 2
 property_name = "description"
 resource_holder = NodePath("../../../../../ResourceHolder")
 
-[node name="Selectable" parent="." index="3"]
-disabled_on_start = true
-
 [node name="CardDataHolder" parent="." index="4"]
 resource = ExtResource("4_fp8rf")
 

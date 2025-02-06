@@ -83,7 +83,7 @@ flat = true
 
 [node name="Selectable" type="Node" parent="."]
 script = ExtResource("2_u8iu0")
-disabled_on_start = false
+disabled = true
 
 [node name="CardDataHolder" type="Node" parent="."]
 script = ExtResource("7_6jdvv")
