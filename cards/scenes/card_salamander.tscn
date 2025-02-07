@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7b4i3bcydgyw"]
+[gd_scene load_steps=5 format=3 uid="uid://b7b4i3bcydgyw"]
 
 [ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="1_3idia"]
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="2_tbape"]
 [ext_resource type="Script" path="res://cards/scripts/resource_holder.gd" id="3_3xpj0"]
+[ext_resource type="Script" path="res://cards/scripts/create_card.gd" id="4_i4rkl"]
 
 [node name="Card" groups=["salamander"] instance=ExtResource("1_3idia")]
 
@@ -25,3 +26,6 @@ script = ExtResource("3_3xpj0")
 
 [node name="NextStageCardDataHolder" type="Node" parent="." index="6"]
 script = ExtResource("3_3xpj0")
+
+[node name="CreateCard" type="Node" parent="." index="7"]
+script = ExtResource("4_i4rkl")

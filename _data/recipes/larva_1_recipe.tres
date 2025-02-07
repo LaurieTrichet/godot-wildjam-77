@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=2 format=3 uid="uid://xigvpvftd8re"]
+
+[ext_resource type="Script" path="res://recipes/recipe.gd" id="1_2qe4w"]
+
+[resource]
+script = ExtResource("1_2qe4w")
+data = {
+"food": 1,
+"time": 1
+}

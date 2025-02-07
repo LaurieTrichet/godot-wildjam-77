@@ -1,10 +1,13 @@
 extends Resource
 
-class_name NextStageCardData
+class_name CardCreationData
 
 
 @export_file("*.tscn") var card_scene_path: String
+
 @export var card_data: CardData
+@export var recipe: Recipe
+@export var next_stage_data: CardCreationData
 
 
 var next_stage: String:
