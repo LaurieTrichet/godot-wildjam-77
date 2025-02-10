@@ -5,14 +5,12 @@
 
 [node name="EggCard" instance=ExtResource("1_6pkjy")]
 
-[node name="Image" parent="MarginContainer/VBoxContainer" index="1"]
-node_property_name = ""
-
-[node name="TitleLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="0"]
-node_property_name = ""
+[node name="DescriptionLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="1"]
+node_property_name = null
 
 [node name="NextStageLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="2"]
 text = "next_stage"
+node_property_name = null
 
 [node name="CardDataHolder" parent="." index="4"]
 resource = ExtResource("2_8xlkd")

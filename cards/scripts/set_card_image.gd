@@ -8,10 +8,8 @@ func _ready() -> void:
 	node_property_name = "texture"
 
 
-func do(card_data: Resource):
-	if !card_data:
-		return
-	var value = card_data.get(property_name)
-	visible = value != null
-	if value and get(node_property_name):
-		set(node_property_name,value)
+func _check_validity(value) -> bool:
+	var result = false
+	if value and value is Texture2D:
+		result = true
+	return result

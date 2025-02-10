@@ -1,6 +1,6 @@
 extends Resource
 
-class_name CardData
+class_name CoreCardData
 
 @export var title: String
 @export var image: Texture2D

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AnimalCardData" load_steps=7 format=3 uid="uid://dfrx7bnoe5al"]
+
+[ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://_data/core_data/card_data_fire_salamander_egg.tres" id="1_egd6t"]
+[ext_resource type="Script" path="res://cards/scripts/data/animal_card_data.gd" id="1_u6ui1"]
+[ext_resource type="Resource" uid="uid://drqwivilsrrmr" path="res://_data/core_data/card_data_fire_salamander_larva_1.tres" id="2_hfiry"]
+[ext_resource type="Resource" uid="uid://xigvpvftd8re" path="res://_data/recipes/larva_1_recipe.tres" id="3_lo0yl"]
+[ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://_data/recipes/egg_recipe.tres" id="5_wvurk"]
+
+[sub_resource type="Resource" id="Resource_ew64q"]
+script = ExtResource("1_u6ui1")
+card_scene_path = "res://cards/scenes/card_salamander.tscn"
+card_data = ExtResource("2_hfiry")
+recipe = ExtResource("3_lo0yl")
+
+[resource]
+script = ExtResource("1_u6ui1")
+card_scene_path = "res://cards/scenes/card_salamander.tscn"
+card_data = ExtResource("1_egd6t")
+recipe = ExtResource("5_wvurk")
+next_stage_data = SubResource("Resource_ew64q")

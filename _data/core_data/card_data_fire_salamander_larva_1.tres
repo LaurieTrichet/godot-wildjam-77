@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://drqwivilsrrmr"]
 
 [ext_resource type="Texture2D" uid="uid://6cptrgycevvk" path="res://textures/tiger_salamander_larva.jpg" id="1_3ky5k"]
-[ext_resource type="Script" path="res://cards/scripts/data/card_data.gd" id="2_c0l70"]
+[ext_resource type="Script" path="res://cards/scripts/data/core_card_data.gd" id="2_c0l70"]
 
 [resource]
 script = ExtResource("2_c0l70")
