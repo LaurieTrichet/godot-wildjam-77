@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dql3pwhkx18f"]
+[gd_scene load_steps=4 format=3 uid="uid://dql3pwhkx18f"]
 
 [ext_resource type="PackedScene" uid="uid://dqomndebwjgmn" path="res://cards/scenes/card.tscn" id="1_rs1fj"]
 [ext_resource type="Script" path="res://cards/scripts/set_card_text.gd" id="2_67iqv"]
 [ext_resource type="PackedScene" uid="uid://cjw3xcu53ele3" path="res://cards/components/resource_property_label.tscn" id="2_72khr"]
-[ext_resource type="Script" path="res://cards/scripts/resource_holder.gd" id="3_xpblm"]
 
 [node name="Card" groups=["resource"] instance=ExtResource("1_rs1fj")]
 
@@ -12,15 +11,15 @@ layout_mode = 2
 text = "Type"
 script = ExtResource("2_67iqv")
 property_name = "card_type"
-resource_holder = NodePath("../../../../ResourceHolder")
+resource_holder = NodePath("../../../../CardDataHolder")
+
+[node name="Image" parent="MarginContainer/VBoxContainer" index="1"]
+property_name = "card_data.image"
+
+[node name="TitleLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="0"]
+property_name = "card_data.title"
 
 [node name="DescriptionLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="1" node_paths=PackedStringArray("resource_holder") instance=ExtResource("2_72khr")]
 layout_mode = 2
 property_name = "description"
-resource_holder = NodePath("../../../../../ResourceHolder")
-
-[node name="Selectable" parent="." index="3"]
-disabled_on_start = true
-
-[node name="ResourceHolder" type="Node" parent="." index="5"]
-script = ExtResource("3_xpblm")
+resource_holder = NodePath("../../../../../CardDataHolder")

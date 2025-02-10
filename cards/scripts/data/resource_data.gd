@@ -7,6 +7,7 @@ enum ResourceType{
 	TIME
 }
 
+@export var card_data: CoreCardData
 @export var type: ResourceType
 var card_type: String:
 	get:

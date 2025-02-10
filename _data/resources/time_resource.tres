@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="ResourceData" load_steps=2 format=3 uid="uid://xj1tmad6a7ob"]
+[gd_resource type="Resource" script_class="ResourceData" load_steps=3 format=3 uid="uid://xj1tmad6a7ob"]
 
 [ext_resource type="Script" path="res://cards/scripts/data/resource_data.gd" id="1_6lh5s"]
+[ext_resource type="Resource" uid="uid://c6nk73m7fsyq4" path="res://_data/core_data/card_data_time.tres" id="1_ba47h"]
 
 [resource]
 script = ExtResource("1_6lh5s")
+card_data = ExtResource("1_ba47h")
 type = 1
 description = "Represents the time passing."
