@@ -1,6 +1,6 @@
 extends Node
 
-signal available(recipe: Recipe, cards: Array[ResourceData])
+signal available(recipe: Recipe, source_card_data: AnimalCardData, resource_data_list: Array[ResourceData])
 signal invalid
 
 @onready var input_recipe_cards_container: HBoxContainer = %InputRecipeCardsContainer
@@ -27,16 +27,16 @@ func do(_card_node: Node) -> void:
 
 func _get_recipe():
 	var target_card_node =  target_card_container.get_children().front()
-	var recipe_resource_holder: ResourceHolder = target_card_node.find_child("RecipeResourceHolder")
-	if !recipe_resource_holder:
+	var card_data_holder: ResourceHolder = target_card_node.find_child("CardDataHolder")
+	if !card_data_holder:
 		printerr("missing node named RecipeResourceHolder in Card: ", target_card_node.name)
 		return
 
-	if !recipe_resource_holder.resource or (!recipe_resource_holder.resource is Recipe):
+	if !card_data_holder.resource or (!card_data_holder.resource.get("recipe")):
 		printerr("missing Recipe resource in recipe holder for Card: ",target_card_node.name)
 		return
 		
-	return recipe_resource_holder.resource as Recipe
+	return card_data_holder.resource.recipe
 
 
 func _get_resources(cards: Array[Node]) -> Array[ResourceData]:
@@ -51,7 +51,7 @@ func _get_resources(cards: Array[Node]) -> Array[ResourceData]:
 
 
 func _get_resource_data_for_node(card: Node) -> ResourceData:
-	var resource_holder = card.find_child("ResourceHolder") as ResourceHolder
+	var resource_holder = card.find_child("CardDataHolder") as ResourceHolder
 	if !resource_holder.resource or (!resource_holder.resource is ResourceData):
 		printerr("missing ResourceData resource for Card: ",card.name)
 		return

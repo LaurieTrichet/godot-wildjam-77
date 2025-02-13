@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=7 format=3 uid="uid://bfwf3bbwvdi2l"]
 
 [ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/textures/simple_right.png" id="1_olttw"]
 [ext_resource type="Script" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
+[ext_resource type="Script" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
 [ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="8_fdjgd"]
 [ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="9_vikhd"]
 [ext_resource type="Script" path="res://play_area/check_recipe.gd" id="10_t3ufc"]
@@ -70,6 +71,9 @@ script = ExtResource("10_t3ufc")
 
 [node name="MakeCardSelectable" type="Node" parent="."]
 script = ExtResource("5_okk0g")
+
+[node name="CreateCard" type="Node" parent="."]
+script = ExtResource("6_ar3u1")
 
 [connection signal="child_entered_tree" from="HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
 [connection signal="done" from="MoveSelectedCards" to="RouteRecipeComponents" method="do"]
