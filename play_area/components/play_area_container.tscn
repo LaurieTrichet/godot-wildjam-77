@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=9 format=3 uid="uid://bfwf3bbwvdi2l"]
 
 [ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/textures/simple_right.png" id="1_olttw"]
 [ext_resource type="Script" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
 [ext_resource type="Script" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
+[ext_resource type="Script" path="res://play_area/add_node_to_parent.gd" id="7_4homu"]
 [ext_resource type="Script" path="res://play_area/move_selected_cards.gd" id="8_fdjgd"]
+[ext_resource type="Script" path="res://play_area/remove_cards_from_selected_area.gd" id="8_qmrs2"]
 [ext_resource type="Script" path="res://play_area/route_recipe_components.gd" id="9_vikhd"]
 [ext_resource type="Script" path="res://play_area/check_recipe.gd" id="10_t3ufc"]
 
@@ -75,9 +77,22 @@ script = ExtResource("5_okk0g")
 [node name="CreateCard" type="Node" parent="."]
 script = ExtResource("6_ar3u1")
 
+[node name="AddNewCardToContainer" type="Node" parent="." node_paths=PackedStringArray("target_container")]
+script = ExtResource("7_4homu")
+target_container = NodePath("../HandsCardsArea/HandContainer")
+
+[node name="RemoveCardsFromSelectedArea" type="Node" parent="." node_paths=PackedStringArray("target_container")]
+script = ExtResource("8_qmrs2")
+target_container = NodePath("../SelectedCardsArea")
+
 [connection signal="child_entered_tree" from="HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
+[connection signal="pressed" from="FeedButton" to="CreateCard" method="do"]
 [connection signal="done" from="MoveSelectedCards" to="RouteRecipeComponents" method="do"]
-[connection signal="available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
+[connection signal="invalid" from="RouteRecipeComponents" to="CreateCard" method="clear_data"]
 [connection signal="invalid" from="RouteRecipeComponents" to="FeedButton" method="set_disabled" binds= [true]]
+[connection signal="recipe_component_available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
+[connection signal="recipe_output_available" from="RouteRecipeComponents" to="CreateCard" method="cache_data"]
 [connection signal="is_invalid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [true]]
 [connection signal="is_valid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [false]]
+[connection signal="card_created" from="CreateCard" to="AddNewCardToContainer" method="do"]
+[connection signal="card_created" from="CreateCard" to="RemoveCardsFromSelectedArea" method="do"]

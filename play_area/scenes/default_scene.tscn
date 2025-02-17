@@ -98,5 +98,6 @@ script = ExtResource("4_xju2m")
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="MainLayout/OpenPackPanelContainer/OpenPack" method="do"]
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="MainLayout/OpenPackPanelContainer/MoveChildrenToContainer" method="do"]
 [connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="activate_play_area"]
+[connection signal="card_created" from="MainLayout/PlayAreaContainer/CreateCard" to="MainLayout/PlayAreaContainer/MoveSelectedCards" method="send_back_to_hand"]
 
 [editable path="MainLayout/PlayAreaContainer"]

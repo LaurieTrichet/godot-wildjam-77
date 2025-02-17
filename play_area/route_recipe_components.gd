@@ -1,31 +1,50 @@
 extends Node
 
-signal available(recipe: Recipe, source_card_data: AnimalCardData, resource_data_list: Array[ResourceData])
+signal recipe_component_available(recipe: Recipe, resource_data_list: Array[ResourceData])
+signal recipe_output_available(result_card_data: AnimalCardData)
 signal invalid
 
 @onready var input_recipe_cards_container: HBoxContainer = %InputRecipeCardsContainer
 @onready var target_card_container: HBoxContainer = %TargetCardContainer
 
 
-func do(_card_node: Node) -> void:
+func do() -> void:
 	var cards = input_recipe_cards_container.get_children()
 	
 	if cards.is_empty() or target_card_container.get_child_count() == 0:
 		invalid.emit()
 		return
 	
-	var recipe: Recipe = _get_recipe()
+	var card_resource: AnimalCardData = _get_target_card_resource()
+	if ! card_resource or card_resource is not AnimalCardData:
+		printerr("resource is not of type Animal Card Data ", target_card_container.get_children())
+		invalid.emit()
+		return
+	
 	if !recipe:
 		printerr("missing resource in recipe holder for Card: ", target_card_container.get_children())
 		invalid.emit()
 		return
 
 	var resource_data_list : Array[ResourceData] = _get_resources(cards)
-	
-	available.emit(recipe, resource_data_list)
+	recipe_component_available.emit(recipe, resource_data_list)
+	recipe_output_available.emit(card_resource)
 
 
-func _get_recipe():
+func _get_target_card_resource():
+	var target_card_node =  target_card_container.get_children().front()
+	var card_data_holder: ResourceHolder = target_card_node.find_child("CardDataHolder")
+	if !card_data_holder:
+		printerr("missing node named RecipeResourceHolder in Card: ", target_card_node.name)
+		return
+
+	if !card_data_holder.resource:
+		return
+		
+	return card_data_holder.resource
+
+
+func _get_recipe(resource: Resource):
 	var target_card_node =  target_card_container.get_children().front()
 	var card_data_holder: ResourceHolder = target_card_node.find_child("CardDataHolder")
 	if !card_data_holder:

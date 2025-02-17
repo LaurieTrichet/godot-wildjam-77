@@ -2,7 +2,6 @@ extends Node
 
 class_name CheckRecipeValidity
 
-signal checked_validity(result: bool)
 signal is_valid
 signal is_invalid
 
@@ -10,7 +9,6 @@ signal is_invalid
 func do(recipe: Recipe, resource_data_list: Array[ResourceData]) -> void:
 	var result = evaluate_validity(recipe, resource_data_list)
 		
-	checked_validity.emit(result)
 	if result :
 		is_valid.emit()
 	else:

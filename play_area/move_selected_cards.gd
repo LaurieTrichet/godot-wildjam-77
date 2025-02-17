@@ -22,7 +22,7 @@ func triage_card_move_event(card_node: Node, selected: bool):
 		move_card(card_node)
 	else:
 		send_back_to_hand(card_node)
-	done.emit(card_node)
+	done.emit()
 
 
 func move_card(card_node: Node):
