@@ -29,7 +29,7 @@ func do() -> void:
 
 	var resource_data_list : Array[ResourceData] = _get_resources(cards)
 	recipe_component_available.emit(recipe, resource_data_list)
-	recipe_output_available.emit(card_resource)
+	recipe_output_available.emit(card_resource.next_stage_data)
 
 
 func _get_target_card_resource():
