@@ -21,6 +21,7 @@ func do() -> void:
 		invalid.emit()
 		return
 	
+	var recipe: Recipe = _get_recipe(card_resource)
 	if !recipe:
 		printerr("missing resource in recipe holder for Card: ", target_card_container.get_children())
 		invalid.emit()
