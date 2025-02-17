@@ -12,7 +12,7 @@ class_name AnimalCardData
 
 var next_stage: String:
 	get:
-		return _construct_next_stage() if next_stage_data else null
+		return _construct_next_stage() if next_stage_data else ""
 
 
 func _construct_next_stage():
