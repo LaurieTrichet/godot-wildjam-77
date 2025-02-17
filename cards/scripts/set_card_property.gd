@@ -27,16 +27,16 @@ func do(resource: Resource)-> void:
 		visible = false
 
 
-func _check_validity(value) -> bool:
+func _check_validity(_value) -> bool:
 	return false
 
 
 func _get_property(resource: Resource, property_path: String):
 	var property_names = property_path.split(".")
 	var target_property = resource
-	for property_name in property_names:
-		target_property = target_property.get(property_name)
+	for retrieved_property_name in property_names:
+		target_property = target_property.get(retrieved_property_name)
 		if !target_property:
-			printerr("no property for ", property_name, property_path )
+			printerr("no property for ", retrieved_property_name, property_path )
 			return
 	return target_property

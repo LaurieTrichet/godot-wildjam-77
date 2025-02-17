@@ -19,10 +19,11 @@ func connect_to_selectable_if_possible(child: Node):
 
 
 func register_to_select_event(selectable: Selectable):
-	selectable.selected.connect(triage_card_move_event)
+	if ! selectable.selected.is_connected(triage_card_move_event):
+		selectable.selected.connect(triage_card_move_event)
 
 
-func triage_card_move_event(card_node: Node, selected: bool):
+func triage_card_move_event(card_node: Node, _selected: bool):
 	var card_parent = card_node.get_parent()
 	if card_parent == hand_container:
 		move_card(card_node)

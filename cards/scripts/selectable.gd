@@ -10,7 +10,8 @@ signal selected(card_node: Node, value: bool)
 @export var disabled: bool:
 	set(value):
 		disabled = value
-		await ready
+		if ! button:
+			await ready
 		button.disabled = value
 		button.visible = !value
 
