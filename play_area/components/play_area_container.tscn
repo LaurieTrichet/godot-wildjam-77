@@ -97,3 +97,4 @@ target_container = NodePath("../SelectedCardsArea")
 [connection signal="is_valid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [false]]
 [connection signal="card_created" from="CreateCard" to="AddNewCardToContainer" method="do"]
 [connection signal="card_created" from="CreateCard" to="RemoveCardsFromSelectedArea" method="do"]
+[connection signal="done" from="RemoveCardsFromSelectedArea" to="RouteRecipeComponents" method="do"]

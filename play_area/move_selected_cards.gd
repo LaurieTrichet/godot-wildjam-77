@@ -1,6 +1,6 @@
 extends Node
 
-signal done(card: Node)
+signal done()
 
 @onready var target_card_container: HBoxContainer = %TargetCardContainer
 @onready var input_cards_container: HBoxContainer = %InputRecipeCardsContainer
