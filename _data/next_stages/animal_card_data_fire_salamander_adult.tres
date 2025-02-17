@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NextStageCardData" load_steps=3 format=3 uid="uid://cjiv3ld5mp5tg"]
+[gd_resource type="Resource" script_class="AnimalCardData" load_steps=3 format=3 uid="uid://cjiv3ld5mp5tg"]
 
 [ext_resource type="Resource" uid="uid://crmcya5nvr4gk" path="res://_data/core_data/card_data_fire_salamander_adult.tres" id="1_imupr"]
 [ext_resource type="Script" path="res://cards/scripts/data/animal_card_data.gd" id="1_kkjp6"]
