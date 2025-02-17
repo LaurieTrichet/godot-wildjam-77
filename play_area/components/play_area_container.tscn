@@ -85,6 +85,7 @@ target_container = NodePath("../HandsCardsArea/HandContainer")
 script = ExtResource("8_qmrs2")
 target_container = NodePath("../SelectedCardsArea")
 
+[connection signal="child_entered_tree" from="HandsCardsArea/HandContainer" to="MoveSelectedCards" method="connect_to_selectable_if_possible"]
 [connection signal="child_entered_tree" from="HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
 [connection signal="pressed" from="FeedButton" to="CreateCard" method="do"]
 [connection signal="done" from="MoveSelectedCards" to="RouteRecipeComponents" method="do"]

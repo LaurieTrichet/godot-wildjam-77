@@ -12,6 +12,12 @@ func _ready() -> void:
 	cards.map(func(card): register_to_select_event(card))
 
 
+func connect_to_selectable_if_possible(child: Node):
+	var selectable = child.find_children("*", "Selectable").front()
+	if selectable:
+		register_to_select_event(selectable)
+
+
 func register_to_select_event(selectable: Selectable):
 	selectable.selected.connect(triage_card_move_event)
 
