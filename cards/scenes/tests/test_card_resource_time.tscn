@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://db2350eu328y1"]
 
 [ext_resource type="PackedScene" uid="uid://dql3pwhkx18f" path="res://cards/scenes/card_resource.tscn" id="1_yqk1d"]
-[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resources/time_resource.tres" id="6_2yy2e"]
+[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resource_card_data/time_resource.tres" id="6_2yy2e"]
 
 [node name="Card" instance=ExtResource("1_yqk1d")]
 

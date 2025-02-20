@@ -1,6 +1,6 @@
 extends Resource
 
-class_name ResourceData
+class_name ResourceCardData
 
 enum ResourceType{
 	FOOD,

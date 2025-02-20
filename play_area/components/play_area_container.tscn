@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=8 format=3 uid="uid://bfwf3bbwvdi2l"]
 
-[ext_resource type="Texture2D" uid="uid://cxstaym8g0up8" path="res://play_area/textures/simple_right.png" id="1_olttw"]
 [ext_resource type="Script" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
 [ext_resource type="Script" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
 [ext_resource type="Script" path="res://play_area/add_node_to_parent.gd" id="7_4homu"]
@@ -10,40 +9,71 @@
 [ext_resource type="Script" path="res://play_area/check_recipe.gd" id="10_t3ufc"]
 
 [node name="PlayAreaContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
 size_flags_horizontal = 6
-size_flags_vertical = 6
+size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectedCardsArea" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-
-[node name="Label" type="Label" parent="SelectedCardsArea"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Place your card here."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SelectedCardsArea"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="TargetCardContainer" type="HBoxContainer" parent="SelectedCardsArea/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="SelectedCardsArea/HBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"AnimalCardPanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectedCardsArea/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SelectedCardsArea/HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Place your animal card here."
+
+[node name="TargetCardContainer" type="HBoxContainer" parent="SelectedCardsArea/HBoxContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_type_variation = &"animal_h_box"
 
-[node name="CenterContainer" type="CenterContainer" parent="SelectedCardsArea/HBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
+[node name="PanelContainer2" type="PanelContainer" parent="SelectedCardsArea/HBoxContainer"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+theme_type_variation = &"ResourcePanelContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectedCardsArea/HBoxContainer/PanelContainer2"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="SelectedCardsArea/HBoxContainer/CenterContainer"]
+[node name="Label2" type="Label" parent="SelectedCardsArea/HBoxContainer/PanelContainer2/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_olttw")
+size_flags_horizontal = 4
+text = "Place the cards you want to use to interact with the animal card here."
 
-[node name="InputRecipeCardsContainer" type="HBoxContainer" parent="SelectedCardsArea/HBoxContainer"]
+[node name="InputRecipeCardsContainer" type="HBoxContainer" parent="SelectedCardsArea/HBoxContainer/PanelContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FeedButton" type="Button" parent="CenterContainer2"]
+custom_minimum_size = Vector2(190, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "Feed"
 
 [node name="HandsCardsArea" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HandsCardsArea"]
@@ -54,13 +84,6 @@ text = "Your hand"
 [node name="HandContainer" type="HBoxContainer" parent="HandsCardsArea"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="FeedButton" type="Button" parent="."]
-custom_minimum_size = Vector2(190, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-disabled = true
-text = "Feed"
 
 [node name="MoveSelectedCards" type="Node" parent="."]
 script = ExtResource("8_fdjgd")
@@ -85,16 +108,16 @@ target_container = NodePath("../HandsCardsArea/HandContainer")
 script = ExtResource("8_qmrs2")
 target_container = NodePath("../SelectedCardsArea")
 
+[connection signal="pressed" from="CenterContainer2/FeedButton" to="CreateCard" method="do"]
 [connection signal="child_entered_tree" from="HandsCardsArea/HandContainer" to="MoveSelectedCards" method="connect_to_selectable_if_possible"]
 [connection signal="child_entered_tree" from="HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
-[connection signal="pressed" from="FeedButton" to="CreateCard" method="do"]
 [connection signal="done" from="MoveSelectedCards" to="RouteRecipeComponents" method="do"]
 [connection signal="invalid" from="RouteRecipeComponents" to="CreateCard" method="clear_data"]
-[connection signal="invalid" from="RouteRecipeComponents" to="FeedButton" method="set_disabled" binds= [true]]
+[connection signal="invalid" from="RouteRecipeComponents" to="CenterContainer2/FeedButton" method="set_disabled" binds= [true]]
 [connection signal="recipe_component_available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
 [connection signal="recipe_output_available" from="RouteRecipeComponents" to="CreateCard" method="cache_data"]
-[connection signal="is_invalid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [true]]
-[connection signal="is_valid" from="CheckRecipeValidity" to="FeedButton" method="set_disabled" binds= [false]]
+[connection signal="is_invalid" from="CheckRecipeValidity" to="CenterContainer2/FeedButton" method="set_disabled" binds= [true]]
+[connection signal="is_valid" from="CheckRecipeValidity" to="CenterContainer2/FeedButton" method="set_disabled" binds= [false]]
 [connection signal="card_created" from="CreateCard" to="AddNewCardToContainer" method="do"]
 [connection signal="card_created" from="CreateCard" to="RemoveCardsFromSelectedArea" method="do"]
 [connection signal="done" from="RemoveCardsFromSelectedArea" to="RouteRecipeComponents" method="do"]

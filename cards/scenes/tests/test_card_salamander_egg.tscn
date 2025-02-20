@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://csa62ijttcxxm"]
 
 [ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="1_6pkjy"]
-[ext_resource type="Resource" uid="uid://dfrx7bnoe5al" path="res://_data/next_stages/animal_card_data_fire_salamander_egg.tres" id="2_8xlkd"]
+[ext_resource type="Resource" uid="uid://dfrx7bnoe5al" path="res://_data/animal_card_data/animal_card_data_fire_salamander_egg.tres" id="2_8xlkd"]
 
 [node name="EggCard" instance=ExtResource("1_6pkjy")]
 
