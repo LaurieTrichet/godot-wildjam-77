@@ -9,7 +9,6 @@ signal invalid
 
 
 func do() -> void:
-	
 	var card_resource: AnimalCardData = _get_target_card_resource()
 	if ! card_resource or card_resource is not AnimalCardData:
 		printerr("resource is not of type Animal Card Data ", target_card_container.get_children())

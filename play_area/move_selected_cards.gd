@@ -1,6 +1,6 @@
 extends Node
 
-signal done()
+signal ready_to_move(target_node: Node, from_container: Control, to_container: Control)
 
 @onready var target_card_container: HBoxContainer = %TargetCardContainer
 @onready var input_cards_container: HBoxContainer = %InputRecipeCardsContainer
@@ -26,21 +26,21 @@ func register_to_select_event(selectable: Selectable):
 func triage_card_move_event(card_node: Node, _selected: bool):
 	var card_parent = card_node.get_parent()
 	if card_parent == hand_container:
-		move_card(card_node)
+		move_card(card_node, card_parent)
 	else:
-		send_back_to_hand(card_node)
-	done.emit()
+		send_back_to_hand(card_node, card_parent)
 
 
-func move_card(card_node: Node):
+func move_card(card_node: Node, from_container: Control):
+	var to_container 
 	if card_node.is_in_group(&"resource"):
-		card_node.reparent(input_cards_container, false)
+		to_container = input_cards_container
 	if card_node.is_in_group(&"salamander"):
 		if target_card_container.get_child_count() > 0:
 			var card_to_move = target_card_container.get_child(0)
-			card_to_move.reparent(hand_container, false)
-		card_node.reparent(target_card_container, false)
+	if to_container:
+		ready_to_move.emit(card_node, from_container, to_container)
 
 
-func send_back_to_hand(card_node: Node):
-	card_node.reparent(hand_container, false)
+func send_back_to_hand(card_node: Node, from_container: Control):
+	ready_to_move.emit(card_node, from_container, hand_container)

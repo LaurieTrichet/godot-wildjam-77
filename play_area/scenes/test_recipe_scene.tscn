@@ -36,10 +36,10 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EggCard" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" index="0" instance=ExtResource("2_2hl11")]
+[node name="MainLayout_PlayAreaContainer_HandsCardsArea_HandContainer#EggCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="0" instance=ExtResource("2_2hl11")]
 layout_mode = 2
 
-[node name="TimeCard" parent="MainLayout/PlayAreaContainer/HandsCardsArea/HandContainer" index="1" instance=ExtResource("2_eaa45")]
+[node name="MainLayout_PlayAreaContainer_HandsCardsArea_HandContainer#TimeCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="1" instance=ExtResource("2_eaa45")]
 layout_mode = 2
 
 [editable path="MainLayout/PlayAreaContainer"]
