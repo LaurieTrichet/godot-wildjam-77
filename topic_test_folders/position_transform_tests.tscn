@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3 uid="uid://t20jfiifeo1v"]
+
+[ext_resource type="Script" path="res://topic_test_folders/move_canvas_item.gd" id="1_f1kwy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wdsuj"]
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Test
+"
+
+[node name="ResetButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reset"
+
+[node name="MainContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HBoxContainer/MainContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/MainContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -858.0
+offset_top = -265.0
+offset_right = -758.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.00705
+scale = Vector2(2, 2)
+pivot_offset = Vector2(50, 25)
+size_flags_horizontal = 4
+text = "Label 2"
+
+[node name="TargetContainer" type="VBoxContainer" parent="HBoxContainer/MainContainer"]
+modulate = Color(0.52, 0, 0, 0.984314)
+material = SubResource("CanvasItemMaterial_wdsuj")
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/MainContainer/TargetContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Label 1"
+
+[node name="DragLayer" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MoveCanvasItem" type="Node" parent="." node_paths=PackedStringArray("target_container", "drag_layer", "canvas_item_to_move", "origin_container")]
+script = ExtResource("1_f1kwy")
+target_container = NodePath("../HBoxContainer/MainContainer/TargetContainer")
+drag_layer = NodePath("../DragLayer")
+canvas_item_to_move = NodePath("../HBoxContainer/MainContainer/VBoxContainer/Control/Label")
+origin_container = NodePath("../HBoxContainer/MainContainer/VBoxContainer")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartButton" to="MoveCanvasItem" method="do"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/ResetButton" to="MoveCanvasItem" method="reset"]
