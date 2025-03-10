@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AnimalCardData" load_steps=5 format=3 uid="uid://dfrx7bnoe5al"]
 
 [ext_resource type="Resource" uid="uid://ci0dchcl35j84" path="res://_data/core_data/card_data_fire_salamander_egg.tres" id="1_egd6t"]
-[ext_resource type="Script" path="res://cards/scripts/data/animal_card_data.gd" id="1_u6ui1"]
+[ext_resource type="Script" uid="uid://b3ycomkle600w" path="res://cards/scripts/data/animal_card_data.gd" id="1_u6ui1"]
 [ext_resource type="Resource" uid="uid://de3vognbjbsou" path="res://_data/animal_card_data/animal_card_data_fire_salamander_larva_1.tres" id="2_bfuvm"]
 [ext_resource type="Resource" uid="uid://uuh8uspts84f" path="res://_data/recipes/egg_recipe.tres" id="5_wvurk"]
 

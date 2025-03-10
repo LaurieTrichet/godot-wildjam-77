@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ResourceCardData" load_steps=5 format=3 uid="uid://co5x1u8uvojlt"]
 
-[ext_resource type="Script" path="res://cards/scripts/data/resource_card_data.gd" id="1_gihpo"]
-[ext_resource type="Script" path="res://cards/scripts/data/core_card_data.gd" id="1_htlma"]
+[ext_resource type="Script" uid="uid://cgwta423srw2y" path="res://cards/scripts/data/resource_card_data.gd" id="1_gihpo"]
+[ext_resource type="Script" uid="uid://dehaev6h0mojm" path="res://cards/scripts/data/core_card_data.gd" id="1_htlma"]
 [ext_resource type="Texture2D" uid="uid://bysg2g0nwn2t" path="res://textures/food.png" id="1_jhx22"]
 
 [sub_resource type="Resource" id="Resource_sml5k"]

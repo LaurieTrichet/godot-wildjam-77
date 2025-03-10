@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://t20jfiifeo1v"]
 
-[ext_resource type="Script" path="res://topic_test_folders/move_canvas_item.gd" id="1_f1kwy"]
+[ext_resource type="Script" uid="uid://xcy2tc87sb45" path="res://topic_test_folders/move_canvas_item.gd" id="1_f1kwy"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wdsuj"]
 

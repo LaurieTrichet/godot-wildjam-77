@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://crmcya5nvr4gk"]
+[gd_resource type="Resource" script_class="CoreCardData" load_steps=3 format=3 uid="uid://crmcya5nvr4gk"]
 
-[ext_resource type="Script" path="res://cards/scripts/data/core_card_data.gd" id="1_67jhr"]
+[ext_resource type="Script" uid="uid://dehaev6h0mojm" path="res://cards/scripts/data/core_card_data.gd" id="1_67jhr"]
 [ext_resource type="Texture2D" uid="uid://di4p2o7jp64gr" path="res://textures/fire_salamander_adult.png" id="1_e0c7h"]
 
 [resource]
 script = ExtResource("1_67jhr")
-type = 0
 title = "Adult fire salamander"
 image = ExtResource("1_e0c7h")

@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://drqwivilsrrmr" path="res://_data/core_data/card_data_fire_salamander_larva_1.tres" id="1_2t0re"]
 [ext_resource type="Resource" uid="uid://cjiv3ld5mp5tg" path="res://_data/animal_card_data/animal_card_data_fire_salamander_adult.tres" id="2_dx34i"]
 [ext_resource type="Resource" uid="uid://xigvpvftd8re" path="res://_data/recipes/larva_1_recipe.tres" id="3_q07wo"]
-[ext_resource type="Script" path="res://cards/scripts/data/animal_card_data.gd" id="4_wrhih"]
+[ext_resource type="Script" uid="uid://b3ycomkle600w" path="res://cards/scripts/data/animal_card_data.gd" id="4_wrhih"]
 
 [resource]
 script = ExtResource("4_wrhih")
