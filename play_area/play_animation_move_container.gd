@@ -4,9 +4,8 @@ class_name PlayAnimationMoveContainer
 
 signal done()
 
-var acceptable_drop_groups: Array[String]
+@export var duration: float = 1.0
 
-var is_dragging: bool = false
 var dragging_layer: Control
 
 func _ready() -> void:
@@ -15,8 +14,13 @@ func _ready() -> void:
 
 func do(target_node: Node, from_container:Control, to_container: Control):
 	target_node.reparent(dragging_layer)
-	var global_target_position = to_container.target_container.get_screen_position()
+	var global_target_position = to_container.get_screen_position()
 	var dragging_target_position = dragging_layer.make_canvas_position_local(global_target_position)
 	var tween = create_tween().bind_node(target_node)
 	tween.tween_property(target_node, "position", dragging_target_position, 1.0)
-	tween.tween_callback(func(): target_node.reparent(to_container))
+	tween.tween_callback(func(): on_end_animation(target_node,to_container))
+
+
+func on_end_animation(target_node: Node, to_container: Control):
+	target_node.reparent(to_container)
+	done.emit()

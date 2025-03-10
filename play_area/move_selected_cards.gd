@@ -1,6 +1,7 @@
 extends Node
 
 signal ready_to_move(target_node: Node, from_container: Control, to_container: Control)
+signal ready_to_swap_places(replaced_node: Node, replacing_node: Node, from_container: Control, to_container: Control)
 
 @onready var target_card_container: HBoxContainer = %TargetCardContainer
 @onready var input_cards_container: HBoxContainer = %InputRecipeCardsContainer
@@ -38,6 +39,9 @@ func move_card(card_node: Node, from_container: Control):
 	if card_node.is_in_group(&"salamander"):
 		if target_card_container.get_child_count() > 0:
 			var card_to_move = target_card_container.get_child(0)
+			ready_to_swap_places.emit(card_to_move, card_node, hand_container, target_card_container)
+		else:
+			to_container = target_card_container
 	if to_container:
 		ready_to_move.emit(card_node, from_container, to_container)
 

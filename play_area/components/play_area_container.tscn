@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=11 format=3 uid="uid://bfwf3bbwvdi2l"]
 
 [ext_resource type="Script" uid="uid://by505pnrol3xr" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
 [ext_resource type="Script" uid="uid://c0cwueqvuf0k8" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://bioh0tl6moghp" path="res://play_area/move_selected_cards.gd" id="8_fdjgd"]
 [ext_resource type="Script" uid="uid://djfmu6ti56r1k" path="res://play_area/play_animation_move_container.gd" id="8_lg0nw"]
 [ext_resource type="Script" uid="uid://btkj6nnqqem6b" path="res://play_area/remove_cards_from_selected_area.gd" id="8_qmrs2"]
+[ext_resource type="Script" uid="uid://c6junm33r4855" path="res://play_area/play_animation_swap_cards_in_container.gd" id="9_jya8v"]
 [ext_resource type="Script" uid="uid://jo8m15vayjbg" path="res://play_area/route_recipe_components.gd" id="9_vikhd"]
+[ext_resource type="Script" uid="uid://7bte6vsjup4f" path="res://play_area/toggle_interactions_filter.gd" id="10_gi4l4"]
 [ext_resource type="Script" uid="uid://tqhhcn3yqs2t" path="res://play_area/check_recipe.gd" id="10_t3ufc"]
 
 [node name="PlayAreaContainer" type="PanelContainer"]
@@ -121,10 +123,21 @@ target_container = NodePath("../VContainer/SelectedCardsArea")
 [node name="PlayAnimationMoveContainer" type="Node" parent="."]
 script = ExtResource("8_lg0nw")
 
+[node name="PlayAnimationSwapCardsInContainer" type="Node" parent="."]
+script = ExtResource("9_jya8v")
+metadata/_custom_type_script = "uid://c6junm33r4855"
+
+[node name="ToggleInteractionFilter" type="Node" parent="."]
+script = ExtResource("10_gi4l4")
+metadata/_custom_type_script = "uid://7bte6vsjup4f"
+
 [connection signal="pressed" from="VContainer/CenterContainer2/FeedButton" to="CreateCard" method="do"]
 [connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="TriageSelectedCards" method="connect_to_selectable_if_possible"]
 [connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
 [connection signal="ready_to_move" from="TriageSelectedCards" to="PlayAnimationMoveContainer" method="do"]
+[connection signal="ready_to_move" from="TriageSelectedCards" to="ToggleInteractionFilter" method="do"]
+[connection signal="ready_to_swap_places" from="TriageSelectedCards" to="PlayAnimationSwapCardsInContainer" method="do"]
+[connection signal="ready_to_swap_places" from="TriageSelectedCards" to="ToggleInteractionFilter" method="do"]
 [connection signal="invalid" from="RouteRecipeComponents" to="CreateCard" method="clear_data"]
 [connection signal="invalid" from="RouteRecipeComponents" to="VContainer/CenterContainer2/FeedButton" method="set_disabled" binds= [true]]
 [connection signal="recipe_component_available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
@@ -135,3 +148,5 @@ script = ExtResource("8_lg0nw")
 [connection signal="card_created" from="CreateCard" to="RemoveCardsFromSelectedArea" method="do"]
 [connection signal="done" from="RemoveCardsFromSelectedArea" to="RouteRecipeComponents" method="do"]
 [connection signal="done" from="PlayAnimationMoveContainer" to="RouteRecipeComponents" method="do"]
+[connection signal="done" from="PlayAnimationMoveContainer" to="ToggleInteractionFilter" method="do"]
+[connection signal="reset_of_hand_done" from="PlayAnimationSwapCardsInContainer" to="PlayAnimationMoveContainer" method="do"]
