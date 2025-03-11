@@ -183,6 +183,7 @@ delay_in_seconds = "0.0"
 [connection signal="animation_started" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
 [connection signal="done" from="PlayAnimationMoveContainer" to="RouteRecipeComponents" method="do"]
 [connection signal="done" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_done"]
+[connection signal="animation_started" from="PlayAnimationSwapCardsInContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
 [connection signal="reset_of_hand_done" from="PlayAnimationSwapCardsInContainer" to="PlayAnimationMoveContainer" method="do"]
 [connection signal="state_entered" from="StateChart/CompoundState/AcceptInputs" to="ToggleInteractionFilter" method="do"]
 [connection signal="state_entered" from="StateChart/CompoundState/PlayAnimation" to="ToggleInteractionFilter" method="do"]
