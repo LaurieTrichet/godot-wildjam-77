@@ -10,4 +10,4 @@ func _on_play_animation_move_container_animation_started() -> void:
 
 
 func _on_play_animation_move_container_done() -> void:
-		state_chart.send_event("did_finish_playing_animation")
+	state_chart.send_event("did_finish_playing_animation")
