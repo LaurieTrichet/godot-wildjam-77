@@ -22,7 +22,7 @@ func do(replaced_node: Node, replacing_node: Node, from_container:Control, to_co
 	var dragging_target_position = dragging_layer.make_canvas_position_local(global_target_position)
 	var tween = create_tween().bind_node(replaced_node)
 	tween.tween_property(replaced_node, "position", dragging_target_position, duration)
-	tween.tween_callback(on_end_swap_animation(replaced_node, replacing_node, from_container, to_container) )
+	tween.tween_callback(on_end_swap_animation.bind(replaced_node, replacing_node, from_container, to_container) )
 
 
 func on_end_swap_animation(replaced_node: Node, replacing_node: Node, from_container:Control, to_container: Control):

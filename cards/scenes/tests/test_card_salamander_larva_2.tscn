@@ -1,0 +1,28 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuhwsxyf403hx"]
+
+[ext_resource type="PackedScene" uid="uid://b7b4i3bcydgyw" path="res://cards/scenes/card_salamander.tscn" id="1_w1rbx"]
+[ext_resource type="Texture2D" uid="uid://kpuev08in7qb" path="res://textures/speckels_salamander_front_back_legs.png" id="2_i8vrt"]
+[ext_resource type="Script" uid="uid://dehaev6h0mojm" path="res://cards/scripts/data/core_card_data.gd" id="3_cgkfn"]
+[ext_resource type="Resource" uid="uid://cjiv3ld5mp5tg" path="res://_data/animal_card_data/animal_card_data_fire_salamander_adult.tres" id="4_2v7uv"]
+[ext_resource type="Resource" uid="uid://xigvpvftd8re" path="res://_data/recipes/larva_1_recipe.tres" id="5_jyti7"]
+[ext_resource type="Script" uid="uid://b3ycomkle600w" path="res://cards/scripts/data/animal_card_data.gd" id="6_f5fql"]
+
+[sub_resource type="Resource" id="Resource_3a1u7"]
+script = ExtResource("3_cgkfn")
+title = "Larva stage 2"
+image = ExtResource("2_i8vrt")
+
+[sub_resource type="Resource" id="Resource_58i5e"]
+script = ExtResource("6_f5fql")
+card_scene_path = "res://cards/scenes/card_salamander.tscn"
+card_data = SubResource("Resource_3a1u7")
+recipe = ExtResource("5_jyti7")
+next_stage_data = ExtResource("4_2v7uv")
+
+[node name="Stage2LarvaCard" instance=ExtResource("1_w1rbx")]
+
+[node name="NextStageLabel" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" index="2"]
+text = "next_stage"
+
+[node name="CardDataHolder" parent="." index="4"]
+resource = SubResource("Resource_58i5e")

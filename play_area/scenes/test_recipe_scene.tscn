@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctyybayseolrk"]
+[gd_scene load_steps=5 format=3 uid="uid://ctyybayseolrk"]
 
 [ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/components/play_area_container.tscn" id="1_oa2di"]
 [ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="2_2hl11"]
 [ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="2_eaa45"]
+[ext_resource type="PackedScene" uid="uid://cuhwsxyf403hx" path="res://cards/scenes/tests/test_card_salamander_larva_2.tscn" id="4_7fuh0"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -41,5 +42,14 @@ layout_mode = 2
 
 [node name="MainLayout_PlayAreaContainer_HandsCardsArea_HandContainer#TimeCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="1" instance=ExtResource("2_eaa45")]
 layout_mode = 2
+
+[node name="Stage2LarvaCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="2" instance=ExtResource("4_7fuh0")]
+layout_mode = 2
+
+[node name="PlayAnimationMoveContainer" parent="MainLayout/PlayAreaContainer" index="9"]
+duration = 0.3
+
+[node name="PlayAnimationSwapCardsInContainer" parent="MainLayout/PlayAreaContainer" index="10"]
+duration = 0.3
 
 [editable path="MainLayout/PlayAreaContainer"]
