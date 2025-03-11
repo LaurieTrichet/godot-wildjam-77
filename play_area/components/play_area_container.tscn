@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=16 format=3 uid="uid://bfwf3bbwvdi2l"]
 
 [ext_resource type="Script" uid="uid://by505pnrol3xr" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
 [ext_resource type="Script" uid="uid://c0cwueqvuf0k8" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
@@ -10,6 +10,11 @@
 [ext_resource type="Script" uid="uid://jo8m15vayjbg" path="res://play_area/route_recipe_components.gd" id="9_vikhd"]
 [ext_resource type="Script" uid="uid://7bte6vsjup4f" path="res://play_area/toggle_interactions_filter.gd" id="10_gi4l4"]
 [ext_resource type="Script" uid="uid://tqhhcn3yqs2t" path="res://play_area/check_recipe.gd" id="10_t3ufc"]
+[ext_resource type="Script" uid="uid://2rokx5ouul8e" path="res://play_area/handle_state_chart.gd" id="11_282ap"]
+[ext_resource type="Script" uid="uid://272jkca302h7" path="res://addons/godot_state_charts/state_chart.gd" id="11_ag3b2"]
+[ext_resource type="Script" uid="uid://la68xg61c4ow" path="res://addons/godot_state_charts/compound_state.gd" id="12_282ap"]
+[ext_resource type="Script" uid="uid://c7rtpfl5rkcoy" path="res://addons/godot_state_charts/atomic_state.gd" id="13_6hnck"]
+[ext_resource type="Script" uid="uid://ci2rmt64utpcc" path="res://addons/godot_state_charts/transition.gd" id="14_xy4lf"]
 
 [node name="PlayAreaContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(800, 0)
@@ -131,13 +136,41 @@ metadata/_custom_type_script = "uid://c6junm33r4855"
 script = ExtResource("10_gi4l4")
 metadata/_custom_type_script = "uid://7bte6vsjup4f"
 
+[node name="HandleStateChart" type="Node" parent="."]
+script = ExtResource("11_282ap")
+metadata/_custom_type_script = "uid://2rokx5ouul8e"
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("11_ag3b2")
+metadata/_custom_type_script = "uid://272jkca302h7"
+
+[node name="CompoundState" type="Node" parent="StateChart"]
+script = ExtResource("12_282ap")
+initial_state = NodePath("AcceptInputs")
+
+[node name="AcceptInputs" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_6hnck")
+
+[node name="ToPlayAnimation" type="Node" parent="StateChart/CompoundState/AcceptInputs"]
+script = ExtResource("14_xy4lf")
+to = NodePath("../../PlayAnimation")
+event = &"play_animation"
+delay_in_seconds = "0.0"
+
+[node name="PlayAnimation" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_6hnck")
+
+[node name="ToAcceptInputs" type="Node" parent="StateChart/CompoundState/PlayAnimation"]
+script = ExtResource("14_xy4lf")
+to = NodePath("../../AcceptInputs")
+event = &"did_finish_playing_animation"
+delay_in_seconds = "0.0"
+
 [connection signal="pressed" from="VContainer/CenterContainer2/FeedButton" to="CreateCard" method="do"]
 [connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="TriageSelectedCards" method="connect_to_selectable_if_possible"]
 [connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
 [connection signal="ready_to_move" from="TriageSelectedCards" to="PlayAnimationMoveContainer" method="do"]
-[connection signal="ready_to_move" from="TriageSelectedCards" to="ToggleInteractionFilter" method="do"]
 [connection signal="ready_to_swap_places" from="TriageSelectedCards" to="PlayAnimationSwapCardsInContainer" method="do"]
-[connection signal="ready_to_swap_places" from="TriageSelectedCards" to="ToggleInteractionFilter" method="do"]
 [connection signal="invalid" from="RouteRecipeComponents" to="CreateCard" method="clear_data"]
 [connection signal="invalid" from="RouteRecipeComponents" to="VContainer/CenterContainer2/FeedButton" method="set_disabled" binds= [true]]
 [connection signal="recipe_component_available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
@@ -147,6 +180,9 @@ metadata/_custom_type_script = "uid://7bte6vsjup4f"
 [connection signal="card_created" from="CreateCard" to="AddNewCardToContainer" method="do"]
 [connection signal="card_created" from="CreateCard" to="RemoveCardsFromSelectedArea" method="do"]
 [connection signal="done" from="RemoveCardsFromSelectedArea" to="RouteRecipeComponents" method="do"]
+[connection signal="animation_started" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
 [connection signal="done" from="PlayAnimationMoveContainer" to="RouteRecipeComponents" method="do"]
-[connection signal="done" from="PlayAnimationMoveContainer" to="ToggleInteractionFilter" method="do"]
+[connection signal="done" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_done"]
 [connection signal="reset_of_hand_done" from="PlayAnimationSwapCardsInContainer" to="PlayAnimationMoveContainer" method="do"]
+[connection signal="state_entered" from="StateChart/CompoundState/AcceptInputs" to="ToggleInteractionFilter" method="do"]
+[connection signal="state_entered" from="StateChart/CompoundState/PlayAnimation" to="ToggleInteractionFilter" method="do"]

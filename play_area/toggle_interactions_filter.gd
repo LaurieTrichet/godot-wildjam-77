@@ -2,7 +2,7 @@ extends Node
 
 class_name ToggleInteractionFilter
 
-@export var are_interactions_allowed: bool = true
+@export var are_interactions_allowed: bool = false
 
 var dragging_layer: Control
 
