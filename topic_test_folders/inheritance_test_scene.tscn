@@ -1,0 +1,20 @@
+[gd_scene load_steps=7 format=3 uid="uid://d04bci7gpf0ho"]
+
+[ext_resource type="Script" uid="uid://b4oeyvicwst32" path="res://topic_test_folders/inheritance_test_scene.gd" id="1_i1pnq"]
+[ext_resource type="Script" uid="uid://bmonpf7uccta7" path="res://recipes/recipe.gd" id="2_vt3g0"]
+[ext_resource type="Script" uid="uid://c6prwotit24kc" path="res://topic_test_folders/dog.gd" id="2_wtl2m"]
+[ext_resource type="Resource" uid="uid://dp3bb7owf7wlr" path="res://topic_test_folders/cake_1.tres" id="3_by3ir"]
+[ext_resource type="Script" uid="uid://b5juboea3m1i2" path="res://topic_test_folders/cat.gd" id="3_w60ae"]
+[ext_resource type="Resource" uid="uid://88lh84a5fw6q" path="res://topic_test_folders/stew_1.tres" id="4_yv147"]
+
+[node name="InheritanceTestScene" type="Node2D"]
+script = ExtResource("1_i1pnq")
+input_resources = Array[ExtResource("2_vt3g0")]([ExtResource("4_yv147"), ExtResource("3_by3ir")])
+
+[node name="Dog" type="Node" parent="."]
+script = ExtResource("2_wtl2m")
+metadata/_custom_type_script = "uid://c6prwotit24kc"
+
+[node name="Cat" type="Node" parent="."]
+script = ExtResource("3_w60ae")
+metadata/_custom_type_script = "uid://b5juboea3m1i2"

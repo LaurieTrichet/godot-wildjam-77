@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RecipeStew" load_steps=2 format=3 uid="uid://88lh84a5fw6q"]
+
+[ext_resource type="Script" uid="uid://bogmbjmpsona3" path="res://topic_test_folders/recipe_stew.gd" id="1_4b5us"]
+
+[resource]
+script = ExtResource("1_4b5us")
+data = {}
+metadata/_custom_type_script = "uid://bogmbjmpsona3"

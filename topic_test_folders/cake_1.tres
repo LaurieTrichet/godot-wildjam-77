@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RecipeCake" load_steps=2 format=3 uid="uid://dp3bb7owf7wlr"]
+
+[ext_resource type="Script" uid="uid://bauu3xg3wrdbh" path="res://topic_test_folders/recipe_cake.gd" id="1_runcs"]
+
+[resource]
+script = ExtResource("1_runcs")
+data = {}
+metadata/_custom_type_script = "uid://bauu3xg3wrdbh"
