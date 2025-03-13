@@ -15,7 +15,7 @@ func do(_node: Node):
 
 func _is_selected(child: Node):
 	var selectable = child.find_child("Selectable") as Selectable
-	return selectable.checked and not selectable.disabled
+	return selectable and selectable.checked and not selectable.disabled
 	
 
 func _remove_cards(card_children: Array[Node]):
