@@ -18,10 +18,10 @@ func do(resource: Resource)-> void:
 	if !property_name or !resource:
 		return
 	var value = _get_property(resource, property_name)
-	print("SetCardProperty %s, %s "%[node_property_name, property_name] , value)
+	#print("SetCardProperty %s, %s "%[node_property_name, property_name] , value)
 	if _check_validity(value):
 		visible = true
-		print("set %s "%[node_property_name] , value)
+		#print("set %s "%[node_property_name] , value)
 		set(node_property_name, value)
 	else:
 		visible = false

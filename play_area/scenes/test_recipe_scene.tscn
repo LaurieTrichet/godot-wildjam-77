@@ -46,10 +46,4 @@ layout_mode = 2
 [node name="Stage2LarvaCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="2" instance=ExtResource("4_7fuh0")]
 layout_mode = 2
 
-[node name="PlayAnimationMoveContainer" parent="MainLayout/PlayAreaContainer" index="9"]
-duration = 0.3
-
-[node name="PlayAnimationSwapCardsInContainer" parent="MainLayout/PlayAreaContainer" index="10"]
-duration = 0.3
-
 [editable path="MainLayout/PlayAreaContainer"]

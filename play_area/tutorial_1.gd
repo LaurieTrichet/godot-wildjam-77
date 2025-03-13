@@ -1,8 +1,8 @@
 extends Node
 
 
-@onready var open_pack_panel_container: PanelContainer = %OpenPackPanelContainer
-@onready var play_area_container: VBoxContainer = %PlayAreaContainer
+@onready var open_pack_panel_container: Container = %OpenPackPanelContainer
+@onready var play_area_container: Container = %PlayAreaContainer
  
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

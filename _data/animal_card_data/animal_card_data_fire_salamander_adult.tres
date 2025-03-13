@@ -5,5 +5,5 @@
 
 [resource]
 script = ExtResource("1_kkjp6")
-card_scene_path = "res://cards/scenes/card_salamander.tscn"
+card_scene_path = "uid://b7b4i3bcydgyw"
 card_data = ExtResource("1_imupr")

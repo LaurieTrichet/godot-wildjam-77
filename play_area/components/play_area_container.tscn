@@ -127,9 +127,11 @@ target_container = NodePath("../VContainer/SelectedCardsArea")
 
 [node name="PlayAnimationMoveContainer" type="Node" parent="."]
 script = ExtResource("8_lg0nw")
+duration = 0.3
 
 [node name="PlayAnimationSwapCardsInContainer" type="Node" parent="."]
 script = ExtResource("9_jya8v")
+duration = 0.3
 metadata/_custom_type_script = "uid://c6junm33r4855"
 
 [node name="ToggleInteractionFilter" type="Node" parent="."]

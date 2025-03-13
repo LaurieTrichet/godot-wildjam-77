@@ -5,7 +5,6 @@ extends Node
 @onready var accept_cards_button: Button = %AcceptCardsButton
 
 
-
 func _ready() -> void:
 	pack_container.visible = false
 	accept_cards_button.visible = false
