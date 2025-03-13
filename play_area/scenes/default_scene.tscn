@@ -40,64 +40,69 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/TopMenu"]
 layout_mode = 2
 
-[node name="OpenPackPanelContainer" type="PanelContainer" parent="MainLayout"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="OpenPack" type="Node" parent="MainLayout/OpenPackPanelContainer" node_paths=PackedStringArray("card_pack")]
-script = ExtResource("5_qjk1h")
-card_pack = NodePath("../VBoxContainer/CardPack")
-
-[node name="RemoveCardsInGroupFromParent" type="Node" parent="MainLayout/OpenPackPanelContainer"]
-script = ExtResource("2_4nac3")
-group_name = &"in_booster_pack"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/OpenPackPanelContainer"]
-layout_mode = 2
-
-[node name="CardPack" type="PanelContainer" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(140, 190)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="TextureRect" type="TextureRect" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_3s05t")
-
-[node name="Button" type="Button" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Open"
-
-[node name="PackContainer" type="HBoxContainer" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="EggCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("4_jbw02")]
-layout_mode = 2
-
-[node name="TimeCard" parent="MainLayout/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("3_ustmc")]
-layout_mode = 2
-
-[node name="AcceptCardsButton" type="Button" parent="MainLayout/OpenPackPanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Add to hand."
-
 [node name="PlayAreaContainer" parent="MainLayout" instance=ExtResource("6_mes85")]
 unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TakeRemovedCards" parent="MainLayout/PlayAreaContainer" instance=ExtResource("7_ar2wj")]
 
+[node name="OpenPackPanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+offset_left = -540.0
+offset_top = -588.5
+offset_right = 540.0
+offset_bottom = -29.5
+
+[node name="OpenPack" type="Node" parent="OpenPackPanelContainer" node_paths=PackedStringArray("card_pack")]
+script = ExtResource("5_qjk1h")
+card_pack = NodePath("../VBoxContainer/CardPack")
+
+[node name="RemoveCardsInGroupFromParent" type="Node" parent="OpenPackPanelContainer"]
+script = ExtResource("2_4nac3")
+group_name = &"in_booster_pack"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OpenPackPanelContainer"]
+layout_mode = 2
+
+[node name="CardPack" type="PanelContainer" parent="OpenPackPanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="OpenPackPanelContainer/VBoxContainer/CardPack"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_3s05t")
+
+[node name="Button" type="Button" parent="OpenPackPanelContainer/VBoxContainer/CardPack"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Open"
+
+[node name="PackContainer" type="HBoxContainer" parent="OpenPackPanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EggCard" parent="OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("4_jbw02")]
+custom_minimum_size = Vector2(250, 330)
+layout_mode = 2
+
+[node name="TimeCard" parent="OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("3_ustmc")]
+custom_minimum_size = Vector2(250, 330)
+layout_mode = 2
+
+[node name="AcceptCardsButton" type="Button" parent="OpenPackPanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add to hand."
+
 [node name="Tutorial1" type="Node" parent="."]
 script = ExtResource("4_xju2m")
 
-[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="MainLayout/OpenPackPanelContainer/OpenPack" method="do"]
-[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="MainLayout/OpenPackPanelContainer/RemoveCardsInGroupFromParent" method="do"]
-[connection signal="pressed" from="MainLayout/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="activate_play_area"]
+[connection signal="pressed" from="OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="OpenPackPanelContainer/OpenPack" method="do"]
+[connection signal="pressed" from="OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="OpenPackPanelContainer/RemoveCardsInGroupFromParent" method="do"]
+[connection signal="pressed" from="OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="activate_play_area"]
 
 [editable path="MainLayout/PlayAreaContainer"]
