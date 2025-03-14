@@ -51,6 +51,7 @@ text = "Place your animal card here."
 
 [node name="TargetCardContainer" type="HBoxContainer" parent="VContainer/SelectedCardsArea/HBoxContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
