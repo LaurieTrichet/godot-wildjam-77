@@ -39,6 +39,8 @@ func move_card(card_node: Node, from_container: Control):
 	if card_node.is_in_group(&"salamander"):
 		if target_card_container.get_child_count() > 0:
 			var card_to_move = target_card_container.get_child(0)
+			var selectable = card_to_move.find_child("Selectable") as Selectable
+			selectable and selectable.toggle_selection()
 			ready_to_swap_places.emit(card_to_move, card_node, hand_container, target_card_container)
 		else:
 			to_container = target_card_container
