@@ -1,7 +1,7 @@
 extends Node
 
 @export var card_pack: Node
-@onready var pack_container: HBoxContainer = %PackContainer
+@onready var pack_container: Container = %OpenPackPanelContainer
 @onready var accept_cards_button: Button = %AcceptCardsButton
 
 

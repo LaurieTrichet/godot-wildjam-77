@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv72fb6eo7i1a"]
+
+[ext_resource type="Script" uid="uid://w8m8ghym6sx4" path="res://play_area/remove_cards_from_parent.gd" id="1_unodw"]
+[ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="2_cs1u3"]
+[ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_f3urm"]
+
+[node name="ShowResultCard" type="PanelContainer"]
+
+[node name="RemoveCardsInGroupFromParent" type="Node" parent="."]
+script = ExtResource("1_unodw")
+group_name = &"in_booster_pack"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Review Cards"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PackContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="EggCard" parent="VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("2_cs1u3")]
+custom_minimum_size = Vector2(250, 330)
+layout_mode = 2
+
+[node name="TimeCard" parent="VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("3_f3urm")]
+custom_minimum_size = Vector2(250, 330)
+layout_mode = 2
+
+[node name="AcceptCardsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(190, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Add to hand."
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/AcceptCardsButton" to="RemoveCardsInGroupFromParent" method="do"]
