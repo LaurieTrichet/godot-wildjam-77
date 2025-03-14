@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ykhkmcg0j1g8"]
+[gd_scene load_steps=13 format=3 uid="uid://ykhkmcg0j1g8"]
 
 [ext_resource type="Script" uid="uid://w8m8ghym6sx4" path="res://play_area/remove_cards_from_parent.gd" id="2_4nac3"]
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
@@ -8,6 +8,44 @@
 [ext_resource type="Script" uid="uid://co7l0r3ddfji2" path="res://play_area/open_pack.gd" id="5_qjk1h"]
 [ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/components/play_area_container.tscn" id="6_mes85"]
 [ext_resource type="PackedScene" uid="uid://7nttuwtac2bf" path="res://play_area/components/take_removed_cards.tscn" id="7_ar2wj"]
+
+[sub_resource type="Animation" id="Animation_ar2wj"]
+resource_name = "shake"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.98, 3, 4.02),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(820, 60), Vector2(825, 55), Vector2(820, 60), Vector2(815, 65), Vector2(820, 60)]
+}
+
+[sub_resource type="Animation" id="Animation_05msd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(820, -190)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05msd"]
+_data = {
+&"RESET": SubResource("Animation_05msd"),
+&"shake": SubResource("Animation_ar2wj")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s05t"]
 atlas = ExtResource("2_wmoj5")
@@ -50,73 +88,126 @@ layout_mode = 2
 
 [node name="OpenPack" type="Node" parent="PanelContainer/OpenPackPanelContainer" node_paths=PackedStringArray("card_pack")]
 script = ExtResource("5_qjk1h")
-card_pack = NodePath("../VBoxContainer/CardPack")
-
-[node name="RemoveCardsInGroupFromParent" type="Node" parent="PanelContainer/OpenPackPanelContainer"]
-script = ExtResource("2_4nac3")
-group_name = &"in_booster_pack"
+card_pack = NodePath("../VBoxContainer/CardPackSlot")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/OpenPackPanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label" type="Label" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Open the booster pack"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CardPack" type="PanelContainer" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+[node name="CardPackSlot" type="PanelContainer" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(280, 380)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/CardPack"]
+[node name="Control" type="Control" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 2
+
+[node name="CardPack" type="PanelContainer" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(280, 380)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -440.0
+offset_right = 140.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(140, 190)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/Control/CardPack"]
+libraries = {
+&"": SubResource("AnimationLibrary_05msd")
+}
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/Control/CardPack"]
 custom_minimum_size = Vector2(280, 280)
 layout_mode = 2
+size_flags_horizontal = 4
 texture = SubResource("AtlasTexture_3s05t")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/CardPack"]
+[node name="Button" type="Button" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/Control/CardPack"]
+custom_minimum_size = Vector2(190, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Open"
 
-[node name="PackContainer" type="HBoxContainer" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShowCardsPanel" type="PanelContainer" parent="PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EggCard" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("4_jbw02")]
+[node name="RemoveCardsInGroupFromParent" type="Node" parent="PanelContainer/ShowCardsPanel"]
+script = ExtResource("2_4nac3")
+group_name = &"in_booster_pack"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ShowCardsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="PanelContainer/ShowCardsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Open the booster pack"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="PanelContainer/ShowCardsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PackContainer" type="HBoxContainer" parent="PanelContainer/ShowCardsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="EggCard" parent="PanelContainer/ShowCardsPanel/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("4_jbw02")]
 custom_minimum_size = Vector2(250, 330)
 layout_mode = 2
 
-[node name="TimeCard" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("3_ustmc")]
+[node name="TimeCard" parent="PanelContainer/ShowCardsPanel/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("3_ustmc")]
 custom_minimum_size = Vector2(250, 330)
 layout_mode = 2
 
-[node name="AcceptCardsButton" type="Button" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+[node name="AcceptCardsButton" type="Button" parent="PanelContainer/ShowCardsPanel/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Add to hand."
 
-[node name="Spacer2" type="Control" parent="PanelContainer/OpenPackPanelContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="PanelContainer/ShowCardsPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Tutorial1" type="Node" parent="."]
 script = ExtResource("4_xju2m")
 
-[connection signal="pressed" from="PanelContainer/OpenPackPanelContainer/VBoxContainer/CardPack/Button" to="PanelContainer/OpenPackPanelContainer/OpenPack" method="do"]
-[connection signal="pressed" from="PanelContainer/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="PanelContainer/OpenPackPanelContainer/RemoveCardsInGroupFromParent" method="do"]
-[connection signal="pressed" from="PanelContainer/OpenPackPanelContainer/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="activate_play_area"]
+[connection signal="pressed" from="PanelContainer/OpenPackPanelContainer/VBoxContainer/Control/CardPack/Button" to="PanelContainer/OpenPackPanelContainer/OpenPack" method="do"]
+[connection signal="pressed" from="PanelContainer/ShowCardsPanel/VBoxContainer/AcceptCardsButton" to="Tutorial1" method="activate_play_area"]
+[connection signal="pressed" from="PanelContainer/ShowCardsPanel/VBoxContainer/AcceptCardsButton" to="PanelContainer/ShowCardsPanel/RemoveCardsInGroupFromParent" method="do"]
 
 [editable path="PanelContainer/MainLayout/PlayAreaContainer"]
