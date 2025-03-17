@@ -24,14 +24,14 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PackContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="EggCard" parent="VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("2_cs1u3")]
+[node name="EggCard" parent="VBoxContainer/CardContainer" groups=["in_booster_pack"] instance=ExtResource("2_cs1u3")]
 custom_minimum_size = Vector2(250, 330)
 layout_mode = 2
 
-[node name="TimeCard" parent="VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("3_f3urm")]
+[node name="TimeCard" parent="VBoxContainer/CardContainer" groups=["in_booster_pack"] instance=ExtResource("3_f3urm")]
 custom_minimum_size = Vector2(250, 330)
 layout_mode = 2
 

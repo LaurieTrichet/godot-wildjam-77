@@ -1,16 +1,13 @@
 extends Node
 
-class_name ToggleInteractionFilter
-
-@export var are_interactions_allowed: bool = false
+class_name SetInteractionFilterTag
 
 var dragging_layer: Control
 
 func _ready() -> void:
-	dragging_layer = get_tree().current_scene.find_child("DraggingLayer")
+	dragging_layer = get_tree().get_first_node_in_group(&"dragging_layer")
 
 
-func do():
-	are_interactions_allowed = !are_interactions_allowed
-	print("--- toggle interativity: ", are_interactions_allowed)
-	dragging_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE if are_interactions_allowed else Control.MOUSE_FILTER_STOP
+func do(is_on: bool):
+	print("--- SetInteractionFilterTag: ", is_on)
+	dragging_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE if is_on else Control.MOUSE_FILTER_STOP

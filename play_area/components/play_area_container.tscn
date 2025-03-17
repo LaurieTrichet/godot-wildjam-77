@@ -1,5 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=18 format=3 uid="uid://bfwf3bbwvdi2l"]
 
+[ext_resource type="PackedScene" uid="uid://bv72fb6eo7i1a" path="res://cards/components/show_result_card.tscn" id="1_6hnck"]
+[ext_resource type="PackedScene" uid="uid://7nttuwtac2bf" path="res://play_area/components/take_removed_cards.tscn" id="1_xy4lf"]
 [ext_resource type="Script" uid="uid://by505pnrol3xr" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
 [ext_resource type="Script" uid="uid://c0cwueqvuf0k8" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
 [ext_resource type="Script" uid="uid://4e3h1ho1w883" path="res://play_area/add_node_to_parent.gd" id="7_4homu"]
@@ -98,7 +100,12 @@ text = "Your hand"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="DraggingLayer" type="Control" parent="."]
+[node name="TakeRemovedCards" parent="VContainer/HandsCardsArea" instance=ExtResource("1_xy4lf")]
+
+[node name="ShowResultCard" parent="." instance=ExtResource("1_6hnck")]
+layout_mode = 2
+
+[node name="DraggingLayer" type="Control" parent="." groups=["dragging_layer"]]
 layout_mode = 2
 mouse_filter = 2
 
@@ -134,7 +141,7 @@ script = ExtResource("9_jya8v")
 duration = 0.3
 metadata/_custom_type_script = "uid://c6junm33r4855"
 
-[node name="ToggleInteractionFilter" type="Node" parent="."]
+[node name="SetInteractionFilterTag" type="Node" parent="."]
 script = ExtResource("10_gi4l4")
 metadata/_custom_type_script = "uid://7bte6vsjup4f"
 
@@ -168,6 +175,15 @@ to = NodePath("../../AcceptInputs")
 event = &"did_finish_playing_animation"
 delay_in_seconds = "0.0"
 
+[node name="ShowResultCard" type="Node" parent="StateChart/CompoundState"]
+script = ExtResource("13_6hnck")
+
+[node name="ToAcceptInputs" type="Node" parent="StateChart/CompoundState/ShowResultCard"]
+script = ExtResource("14_xy4lf")
+to = NodePath("../../AcceptInputs")
+event = &"did_finish_playing_animation"
+delay_in_seconds = "0.0"
+
 [connection signal="pressed" from="VContainer/CenterContainer2/FeedButton" to="CreateCard" method="do"]
 [connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="TriageSelectedCards" method="connect_to_selectable_if_possible"]
 [connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
@@ -187,5 +203,8 @@ delay_in_seconds = "0.0"
 [connection signal="done" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_done"]
 [connection signal="animation_started" from="PlayAnimationSwapCardsInContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
 [connection signal="reset_of_hand_done" from="PlayAnimationSwapCardsInContainer" to="PlayAnimationMoveContainer" method="do"]
-[connection signal="state_entered" from="StateChart/CompoundState/AcceptInputs" to="ToggleInteractionFilter" method="do"]
-[connection signal="state_entered" from="StateChart/CompoundState/PlayAnimation" to="ToggleInteractionFilter" method="do"]
+[connection signal="state_entered" from="StateChart/CompoundState/AcceptInputs" to="SetInteractionFilterTag" method="do" binds= [true]]
+[connection signal="state_entered" from="StateChart/CompoundState/PlayAnimation" to="SetInteractionFilterTag" method="do" binds= [false]]
+[connection signal="state_entered" from="StateChart/CompoundState/ShowResultCard" to="SetInteractionFilterTag" method="do" binds= [false]]
+
+[editable path="ShowResultCard"]

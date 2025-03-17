@@ -7,9 +7,8 @@ class_name TakeRemovedCards
 @onready var hand_container: Container
 
 func _ready() -> void:
-	hand_container = get_tree().current_scene.find_child("HandContainer")
+	hand_container = get_parent()
 	get_tree().node_removed.connect(do)
-	print(" take remove cards: ", get_tree().current_scene)
 
 # Called when the node enters the scene tree for the first time.
 func do(child: Node) -> void:
