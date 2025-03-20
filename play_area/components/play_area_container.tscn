@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=17 format=3 uid="uid://bfwf3bbwvdi2l"]
 
-[ext_resource type="PackedScene" uid="uid://bv72fb6eo7i1a" path="res://cards/components/show_result_card.tscn" id="1_6hnck"]
 [ext_resource type="PackedScene" uid="uid://7nttuwtac2bf" path="res://play_area/components/take_removed_cards.tscn" id="1_xy4lf"]
 [ext_resource type="Script" uid="uid://by505pnrol3xr" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
 [ext_resource type="Script" uid="uid://c0cwueqvuf0k8" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
@@ -101,9 +100,6 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TakeRemovedCards" parent="VContainer/HandsCardsArea" instance=ExtResource("1_xy4lf")]
-
-[node name="ShowResultCard" parent="." instance=ExtResource("1_6hnck")]
-layout_mode = 2
 
 [node name="DraggingLayer" type="Control" parent="." groups=["dragging_layer"]]
 layout_mode = 2
@@ -206,5 +202,3 @@ delay_in_seconds = "0.0"
 [connection signal="state_entered" from="StateChart/CompoundState/AcceptInputs" to="SetInteractionFilterTag" method="do" binds= [true]]
 [connection signal="state_entered" from="StateChart/CompoundState/PlayAnimation" to="SetInteractionFilterTag" method="do" binds= [false]]
 [connection signal="state_entered" from="StateChart/CompoundState/ShowResultCard" to="SetInteractionFilterTag" method="do" binds= [false]]
-
-[editable path="ShowResultCard"]

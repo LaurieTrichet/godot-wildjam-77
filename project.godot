@@ -15,6 +15,10 @@ run/main_scene="res://play_area/scenes/default_scene.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://textures/icon.svg"
 
+[autoload]
+
+EventBus="*res://play_area/event_bus.gd"
+
 [display]
 
 window/size/viewport_width=1920

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7lgtkdvikpxk"]
+
+[ext_resource type="PackedScene" uid="uid://dnvigbxwybutv" path="res://play_area/components/show_cards_from_booster.tscn" id="1_wgf1b"]
+[ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="2_n4a5e"]
+[ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_v0cjh"]
+
+[node name="ShowCardsFromBooster" instance=ExtResource("1_wgf1b")]
+
+[node name="EggCard" parent="VBoxContainer/CardContainer" index="1" instance=ExtResource("2_n4a5e")]
+layout_mode = 2
+
+[node name="Card" parent="VBoxContainer/CardContainer" index="2" instance=ExtResource("3_v0cjh")]
+layout_mode = 2
