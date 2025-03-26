@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://7nttuwtac2bf"]
 
-[ext_resource type="Script" uid="uid://cyr8pajbiblbw" path="res://play_area/take_removed_cards.gd" id="1_dp7nk"]
+[ext_resource type="Script" uid="uid://cyr8pajbiblbw" path="res://play_area/scripts/take_removed_cards.gd" id="1_dp7nk"]
 
 [node name="TakeRemovedCards" type="Node"]
 script = ExtResource("1_dp7nk")
-group_name = &"in_booster_pack"
 metadata/_custom_type_script = "uid://cyr8pajbiblbw"

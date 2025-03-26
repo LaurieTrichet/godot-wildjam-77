@@ -1,6 +1,6 @@
 extends Node
 
-class_name AddNewCardToContainer
+class_name AddNodeToParent
 
 @export var target_container: Node
 

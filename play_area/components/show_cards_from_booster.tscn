@@ -1,17 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnvigbxwybutv"]
 
-[ext_resource type="PackedScene" uid="uid://besev78utvvve" path="res://cards/components/modal_with_button.tscn" id="1_dvgbe"]
-[ext_resource type="Script" uid="uid://w8m8ghym6sx4" path="res://play_area/remove_cards_from_parent.gd" id="2_2m6pp"]
-[ext_resource type="Script" uid="uid://dmls05i6w60wl" path="res://play_area/add_card_to_container.gd" id="3_3i8r5"]
+[ext_resource type="PackedScene" uid="uid://besev78utvvve" path="res://play_area/components/modal_with_button.tscn" id="1_dvgbe"]
+[ext_resource type="Script" uid="uid://w8m8ghym6sx4" path="res://play_area/scripts/remove_cards_from_parent.gd" id="2_2m6pp"]
+[ext_resource type="Script" uid="uid://dmls05i6w60wl" path="res://play_area/scripts/add_card_to_container.gd" id="3_3i8r5"]
 
 [node name="ShowCardsFromBooster" instance=ExtResource("1_dvgbe")]
 
-[node name="RemoveCardsFromParent" type="Node" parent="." index="0"]
-script = ExtResource("2_2m6pp")
-group_name = &"in_booster_pack"
-metadata/_custom_type_script = "uid://w8m8ghym6sx4"
-
 [node name="AddCardToContainer" type="Node" parent="VBoxContainer/CardContainer" index="0"]
 script = ExtResource("3_3i8r5")
-group_name = &"in_booster_pack"
 metadata/_custom_type_script = "uid://dmls05i6w60wl"
+
+[node name="RemoveCardsFromParent" type="Node" parent="VBoxContainer/CardContainer" index="1"]
+script = ExtResource("2_2m6pp")
+metadata/_custom_type_script = "uid://w8m8ghym6sx4"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/CardContainer/RemoveCardsFromParent" method="do"]

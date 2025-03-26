@@ -45,4 +45,7 @@ layout_mode = 2
 [node name="Stage2LarvaCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="2" instance=ExtResource("4_7fuh0")]
 layout_mode = 2
 
+[node name="TakeRemovedCards" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="3"]
+group_names = Array[int]([])
+
 [editable path="MainLayout/PlayAreaContainer"]

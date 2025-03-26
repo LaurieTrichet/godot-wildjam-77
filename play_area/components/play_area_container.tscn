@@ -1,19 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfwf3bbwvdi2l"]
+[gd_scene load_steps=18 format=3 uid="uid://bfwf3bbwvdi2l"]
 
 [ext_resource type="PackedScene" uid="uid://7nttuwtac2bf" path="res://play_area/components/take_removed_cards.tscn" id="1_xy4lf"]
-[ext_resource type="Script" uid="uid://by505pnrol3xr" path="res://play_area/make_card_selectable.gd" id="5_okk0g"]
+[ext_resource type="PackedScene" uid="uid://5whb4na7a587" path="res://play_area/components/show_created_card_from_recipe.tscn" id="2_xy4lf"]
+[ext_resource type="Script" uid="uid://by505pnrol3xr" path="res://play_area/scripts/make_card_selectable.gd" id="5_okk0g"]
 [ext_resource type="Script" uid="uid://c0cwueqvuf0k8" path="res://cards/scripts/create_animal_card.gd" id="6_ar3u1"]
-[ext_resource type="Script" uid="uid://4e3h1ho1w883" path="res://play_area/add_node_to_parent.gd" id="7_4homu"]
-[ext_resource type="Script" uid="uid://bioh0tl6moghp" path="res://play_area/move_selected_cards.gd" id="8_fdjgd"]
-[ext_resource type="Script" uid="uid://djfmu6ti56r1k" path="res://play_area/play_animation_move_container.gd" id="8_lg0nw"]
-[ext_resource type="Script" uid="uid://btkj6nnqqem6b" path="res://play_area/remove_cards_from_selected_area.gd" id="8_qmrs2"]
-[ext_resource type="Script" uid="uid://c6junm33r4855" path="res://play_area/play_animation_swap_cards_in_container.gd" id="9_jya8v"]
-[ext_resource type="Script" uid="uid://jo8m15vayjbg" path="res://play_area/route_recipe_components.gd" id="9_vikhd"]
-[ext_resource type="Script" uid="uid://7bte6vsjup4f" path="res://play_area/toggle_interactions_filter.gd" id="10_gi4l4"]
-[ext_resource type="Script" uid="uid://tqhhcn3yqs2t" path="res://play_area/check_recipe.gd" id="10_t3ufc"]
-[ext_resource type="Script" uid="uid://2rokx5ouul8e" path="res://play_area/handle_state_chart.gd" id="11_282ap"]
+[ext_resource type="Script" uid="uid://bioh0tl6moghp" path="res://play_area/scripts/move_selected_cards.gd" id="8_fdjgd"]
+[ext_resource type="Script" uid="uid://djfmu6ti56r1k" path="res://play_area/scripts/play_animation_move_container.gd" id="8_lg0nw"]
+[ext_resource type="Script" uid="uid://btkj6nnqqem6b" path="res://play_area/scripts/remove_cards_from_selected_area.gd" id="8_qmrs2"]
+[ext_resource type="Script" uid="uid://c6junm33r4855" path="res://play_area/scripts/play_animation_swap_cards_in_container.gd" id="9_jya8v"]
+[ext_resource type="Script" uid="uid://jo8m15vayjbg" path="res://play_area/scripts/route_recipe_components.gd" id="9_vikhd"]
+[ext_resource type="Script" uid="uid://7bte6vsjup4f" path="res://play_area/scripts/toggle_interactions_filter.gd" id="10_gi4l4"]
+[ext_resource type="Script" uid="uid://tqhhcn3yqs2t" path="res://play_area/scripts/check_recipe.gd" id="10_t3ufc"]
+[ext_resource type="Script" uid="uid://2rokx5ouul8e" path="res://play_area/scripts/handle_state_chart.gd" id="11_282ap"]
 [ext_resource type="Script" uid="uid://272jkca302h7" path="res://addons/godot_state_charts/state_chart.gd" id="11_ag3b2"]
 [ext_resource type="Script" uid="uid://la68xg61c4ow" path="res://addons/godot_state_charts/compound_state.gd" id="12_282ap"]
+[ext_resource type="Script" uid="uid://dcbm0k8vl7xfh" path="res://play_area/scripts/tag_created_card.gd" id="12_xy4lf"]
 [ext_resource type="Script" uid="uid://c7rtpfl5rkcoy" path="res://addons/godot_state_charts/atomic_state.gd" id="13_6hnck"]
 [ext_resource type="Script" uid="uid://ci2rmt64utpcc" path="res://addons/godot_state_charts/transition.gd" id="14_xy4lf"]
 
@@ -22,6 +23,42 @@ custom_minimum_size = Vector2(800, 0)
 offset_right = 927.0
 offset_bottom = 718.0
 size_flags_vertical = 3
+
+[node name="MakeCardSelectable" type="Node" parent="."]
+script = ExtResource("5_okk0g")
+
+[node name="SetInteractionFilterTag" type="Node" parent="."]
+script = ExtResource("10_gi4l4")
+metadata/_custom_type_script = "uid://7bte6vsjup4f"
+
+[node name="TriageSelectedCards" type="Node" parent="."]
+script = ExtResource("8_fdjgd")
+
+[node name="PlayAnimationMoveContainer" type="Node" parent="."]
+script = ExtResource("8_lg0nw")
+duration = 0.3
+
+[node name="PlayAnimationSwapCardsInContainer" type="Node" parent="."]
+script = ExtResource("9_jya8v")
+duration = 0.3
+metadata/_custom_type_script = "uid://c6junm33r4855"
+
+[node name="RemoveCardsFromSelectedArea" type="Node" parent="." node_paths=PackedStringArray("target_container")]
+script = ExtResource("8_qmrs2")
+target_container = NodePath("../VContainer/SelectedCardsArea")
+
+[node name="RouteRecipeComponents" type="Node" parent="."]
+script = ExtResource("9_vikhd")
+
+[node name="CheckRecipeValidity" type="Node" parent="."]
+script = ExtResource("10_t3ufc")
+
+[node name="CreateCard" type="Node" parent="."]
+script = ExtResource("6_ar3u1")
+
+[node name="TagCreatedCard" type="Node" parent="."]
+script = ExtResource("12_xy4lf")
+metadata/_custom_type_script = "uid://dcbm0k8vl7xfh"
 
 [node name="VContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -99,47 +136,15 @@ text = "Your hand"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="TakeRemovedCards" parent="VContainer/HandsCardsArea" instance=ExtResource("1_xy4lf")]
+[node name="TakeRemovedCards" parent="VContainer/HandsCardsArea/HandContainer" instance=ExtResource("1_xy4lf")]
+group_names = Array[int]([0, 1])
 
 [node name="DraggingLayer" type="Control" parent="." groups=["dragging_layer"]]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TriageSelectedCards" type="Node" parent="."]
-script = ExtResource("8_fdjgd")
-
-[node name="RouteRecipeComponents" type="Node" parent="."]
-script = ExtResource("9_vikhd")
-
-[node name="CheckRecipeValidity" type="Node" parent="."]
-script = ExtResource("10_t3ufc")
-
-[node name="MakeCardSelectable" type="Node" parent="."]
-script = ExtResource("5_okk0g")
-
-[node name="CreateCard" type="Node" parent="."]
-script = ExtResource("6_ar3u1")
-
-[node name="AddNewCardToContainer" type="Node" parent="." node_paths=PackedStringArray("target_container")]
-script = ExtResource("7_4homu")
-target_container = NodePath("../VContainer/HandsCardsArea/HandContainer")
-
-[node name="RemoveCardsFromSelectedArea" type="Node" parent="." node_paths=PackedStringArray("target_container")]
-script = ExtResource("8_qmrs2")
-target_container = NodePath("../VContainer/SelectedCardsArea")
-
-[node name="PlayAnimationMoveContainer" type="Node" parent="."]
-script = ExtResource("8_lg0nw")
-duration = 0.3
-
-[node name="PlayAnimationSwapCardsInContainer" type="Node" parent="."]
-script = ExtResource("9_jya8v")
-duration = 0.3
-metadata/_custom_type_script = "uid://c6junm33r4855"
-
-[node name="SetInteractionFilterTag" type="Node" parent="."]
-script = ExtResource("10_gi4l4")
-metadata/_custom_type_script = "uid://7bte6vsjup4f"
+[node name="ShowCreatedCardFromRecipe" parent="." instance=ExtResource("2_xy4lf")]
+layout_mode = 2
 
 [node name="HandleStateChart" type="Node" parent="."]
 script = ExtResource("11_282ap")
@@ -162,6 +167,12 @@ to = NodePath("../../PlayAnimation")
 event = &"play_animation"
 delay_in_seconds = "0.0"
 
+[node name="ToShowResultCard" type="Node" parent="StateChart/CompoundState/AcceptInputs"]
+script = ExtResource("14_xy4lf")
+to = NodePath("../../ShowResultCard")
+event = &"card_created"
+delay_in_seconds = "0.0"
+
 [node name="PlayAnimation" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("13_6hnck")
 
@@ -177,28 +188,32 @@ script = ExtResource("13_6hnck")
 [node name="ToAcceptInputs" type="Node" parent="StateChart/CompoundState/ShowResultCard"]
 script = ExtResource("14_xy4lf")
 to = NodePath("../../AcceptInputs")
-event = &"did_finish_playing_animation"
+event = &"card_accepted"
 delay_in_seconds = "0.0"
 
-[connection signal="pressed" from="VContainer/CenterContainer2/FeedButton" to="CreateCard" method="do"]
-[connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="TriageSelectedCards" method="connect_to_selectable_if_possible"]
-[connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
 [connection signal="ready_to_move" from="TriageSelectedCards" to="PlayAnimationMoveContainer" method="do"]
 [connection signal="ready_to_swap_places" from="TriageSelectedCards" to="PlayAnimationSwapCardsInContainer" method="do"]
+[connection signal="animation_started" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
+[connection signal="done" from="PlayAnimationMoveContainer" to="RouteRecipeComponents" method="do"]
+[connection signal="done" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_done"]
+[connection signal="animation_started" from="PlayAnimationSwapCardsInContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
+[connection signal="reset_of_hand_done" from="PlayAnimationSwapCardsInContainer" to="PlayAnimationMoveContainer" method="do"]
+[connection signal="done" from="RemoveCardsFromSelectedArea" to="RouteRecipeComponents" method="do"]
 [connection signal="invalid" from="RouteRecipeComponents" to="CreateCard" method="clear_data"]
 [connection signal="invalid" from="RouteRecipeComponents" to="VContainer/CenterContainer2/FeedButton" method="set_disabled" binds= [true]]
 [connection signal="recipe_component_available" from="RouteRecipeComponents" to="CheckRecipeValidity" method="do"]
 [connection signal="recipe_output_available" from="RouteRecipeComponents" to="CreateCard" method="cache_data"]
 [connection signal="is_invalid" from="CheckRecipeValidity" to="VContainer/CenterContainer2/FeedButton" method="set_disabled" binds= [true]]
 [connection signal="is_valid" from="CheckRecipeValidity" to="VContainer/CenterContainer2/FeedButton" method="set_disabled" binds= [false]]
-[connection signal="card_created" from="CreateCard" to="AddNewCardToContainer" method="do"]
 [connection signal="card_created" from="CreateCard" to="RemoveCardsFromSelectedArea" method="do"]
-[connection signal="done" from="RemoveCardsFromSelectedArea" to="RouteRecipeComponents" method="do"]
-[connection signal="animation_started" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
-[connection signal="done" from="PlayAnimationMoveContainer" to="RouteRecipeComponents" method="do"]
-[connection signal="done" from="PlayAnimationMoveContainer" to="HandleStateChart" method="_on_play_animation_move_container_done"]
-[connection signal="animation_started" from="PlayAnimationSwapCardsInContainer" to="HandleStateChart" method="_on_play_animation_move_container_animation_started"]
-[connection signal="reset_of_hand_done" from="PlayAnimationSwapCardsInContainer" to="PlayAnimationMoveContainer" method="do"]
+[connection signal="card_created" from="CreateCard" to="TagCreatedCard" method="do"]
+[connection signal="done" from="TagCreatedCard" to="HandleStateChart" method="show_card_result"]
+[connection signal="pressed" from="VContainer/CenterContainer2/FeedButton" to="CreateCard" method="do"]
+[connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="MakeCardSelectable" method="do"]
+[connection signal="child_entered_tree" from="VContainer/HandsCardsArea/HandContainer" to="TriageSelectedCards" method="connect_to_selectable_if_possible"]
 [connection signal="state_entered" from="StateChart/CompoundState/AcceptInputs" to="SetInteractionFilterTag" method="do" binds= [true]]
+[connection signal="state_entered" from="StateChart/CompoundState/AcceptInputs" to="ShowCreatedCardFromRecipe" method="set_visible" binds= [false]]
 [connection signal="state_entered" from="StateChart/CompoundState/PlayAnimation" to="SetInteractionFilterTag" method="do" binds= [false]]
 [connection signal="state_entered" from="StateChart/CompoundState/ShowResultCard" to="SetInteractionFilterTag" method="do" binds= [false]]
+[connection signal="state_entered" from="StateChart/CompoundState/ShowResultCard" to="ShowCreatedCardFromRecipe" method="set_visible" binds= [true]]
+[connection signal="state_exited" from="StateChart/CompoundState/ShowResultCard" to="ShowCreatedCardFromRecipe" method="set_visible" binds= [true]]

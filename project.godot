@@ -17,7 +17,7 @@ config/icon="res://textures/icon.svg"
 
 [autoload]
 
-EventBus="*res://play_area/event_bus.gd"
+EventBus="*res://play_area/scripts/event_bus/event_bus.gd"
 
 [display]
 
