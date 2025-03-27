@@ -137,7 +137,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="TakeRemovedCards" parent="VContainer/HandsCardsArea/HandContainer" instance=ExtResource("1_xy4lf")]
-group_names = Array[int]([0, 1])
+groups = Array[int]([0, 1])
 
 [node name="DraggingLayer" type="Control" parent="." groups=["dragging_layer"]]
 layout_mode = 2
@@ -148,6 +148,7 @@ layout_mode = 2
 
 [node name="HandleStateChart" type="Node" parent="."]
 script = ExtResource("11_282ap")
+group_accepted = 2
 metadata/_custom_type_script = "uid://2rokx5ouul8e"
 
 [node name="StateChart" type="Node" parent="."]

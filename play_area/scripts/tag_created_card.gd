@@ -4,18 +4,15 @@ class_name TagCreatedCard
 
 signal done
 
-@export var group_name: CardsGroupNames.Types
+@export var group: CardSignal.Names
 
-func _init() -> void:
-	var event_name = CardsGroupNames.get_string_for_group(group_name)
-	var created_card_signal = Signal(self, event_name)
-	EventBus.signals.push_back(created_card_signal)
 
+func _ready() -> void:
+	CardSignal.add_signal(group)
+	
 
 func do( card: Node):
-	var event_name = CardsGroupNames.get_string_for_group(group_name)
-	card.add_to_group(event_name)
-	var event: Signal = EventBus.get_signal(event_name)
-	if event:
-		event.emit(card)
+	var group_name = CardSignal.as_string(group)
+	card.add_to_group(group_name)
+	CardSignal.emit_card_signal(group, [card])
 	done.emit()

@@ -4,12 +4,14 @@ class_name HandleStateChart
 
 @onready var state_chart: StateChart = $"../StateChart"
 
-@export var card_accepted_event: CardsGroupNames.Types
+@export var group_accepted: CardSignal.Names
 
 
-func _init() -> void:
-	var event = EventBus.get_signal_for_group(card_accepted_event)
-	event.connect()
+func _ready() -> void:
+	var card_signal = CardSignal.get_card_signal(group_accepted)
+	if card_signal:
+		card_signal.connect(dismiss_card_created_modal)
+
 
 func _on_play_animation_move_container_animation_started() -> void:
 	state_chart.send_event(&"play_animation")

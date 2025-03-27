@@ -1,23 +1,24 @@
 extends Node
 
-#todo change to dictionary
-var signals: Array[Signal] = []
-
+var signals: Dictionary[StringName, Signal] = {}
 
 func get_signal(signal_name: StringName):
-	print(EventBus.signals)
-	var result = EventBus.signals.filter(func (a_signal: Signal): 
-		return a_signal.get_name() == signal_name).front()
-	print ("Get Signal = ", result)
+	var result = signals.get(signal_name)
 	return result
 
 
-func get_signal_for_group(signal_name: CardsGroupNames.Types):
-	var event_name = CardsGroupNames.get_string_for_group(signal_name)
-	return get_signal(event_name)
+func set_signal(signal_name: StringName):
+	var signal_to_add = Signal(self, signal_name)
+	signals.set(signal_name, signal_to_add)
+	if not has_signal(signal_name):
+		add_user_signal(signal_name)
+	return signals.get(signal_name)
 
 
-func add_signal(signal_name: CardsGroupNames.Types, target: Object):
-	var event_name = CardsGroupNames.get_string_for_group(signal_name)
-	var event = Signal(target, event_name)
-	signals.push_back(event)
+func emit(signal_name: StringName, args: Array):
+	var existing_signal = signals.get(signal_name)
+	if existing_signal:
+		print ("Emitting, ", signal_name)
+		var params = [signal_name]
+		params.append_array(args)
+		emit_signal.callv(params)

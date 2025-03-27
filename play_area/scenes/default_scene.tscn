@@ -152,7 +152,6 @@ layout_mode = 2
 
 [node name="RemoveCardsInGroupFromParent" type="Node" parent="PanelContainer/MainLayout/ShowCardsPanel"]
 script = ExtResource("2_4nac3")
-group_name = &"in_booster_pack"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MainLayout/ShowCardsPanel"]
 layout_mode = 2
@@ -247,4 +246,3 @@ delay_in_seconds = "0.0"
 [connection signal="state_exited" from="StateChart/CompoundState/AssembleRecipe" to="PanelContainer/MainLayout/PlayAreaContainer" method="set_visible"]
 
 [editable path="PanelContainer/MainLayout/PlayAreaContainer"]
-[editable path="PanelContainer/MainLayout/PlayAreaContainer/ShowResultCard"]

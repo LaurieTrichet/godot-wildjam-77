@@ -50,5 +50,3 @@ func _on_settings_updated(key:String, data:Array) -> bool:
 	settings_updated.emit(data[0], data[1], data[2])
 	# accept the message
 	return true
-
-
