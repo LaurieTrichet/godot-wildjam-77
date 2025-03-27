@@ -18,6 +18,11 @@ size_flags_vertical = 3
 
 [node name="CardContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(190, 50)

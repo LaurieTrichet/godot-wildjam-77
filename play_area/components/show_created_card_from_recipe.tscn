@@ -6,12 +6,11 @@
 [ext_resource type="Script" uid="uid://bv4i1oj2r5fy7" path="res://play_area/scripts/event_bus/send_event_bus_event.gd" id="4_5lli1"]
 
 [node name="ShowCreatedCardFromRecipe" instance=ExtResource("1_2h52q")]
-offset_right = 763.0
-offset_bottom = 614.0
+offset_right = 929.0
+offset_bottom = 836.0
 
-[node name="CardContainer" parent="VBoxContainer" index="2"]
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="Label" parent="VBoxContainer" index="0"]
+text = "New Card Created!"
 
 [node name="RemoveCardsFromParent" type="Node" parent="VBoxContainer/CardContainer" index="0"]
 script = ExtResource("3_8br1t")
