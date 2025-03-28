@@ -8,10 +8,12 @@ class_name TakeRemovedCards
 
 func _ready() -> void:
 	hand_container = get_parent()
+	print("take removed card ready")
 	get_tree().node_removed.connect(do)
 
 
 func do(child: Node) -> void:
+	print("take removed card", child)
 	if not child.is_in_group(&"card"):
 		return
 	var group_to_remove = find_group(child)

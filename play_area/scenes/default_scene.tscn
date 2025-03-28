@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://ykhkmcg0j1g8"]
+[gd_scene load_steps=17 format=3 uid="uid://ykhkmcg0j1g8"]
 
+[ext_resource type="PackedScene" uid="uid://dm4lbmigmb2e0" path="res://cards/components/create_cards_from_list.tscn" id="1_h2jjx"]
 [ext_resource type="Script" uid="uid://w8m8ghym6sx4" path="res://play_area/scripts/remove_cards_from_parent.gd" id="2_4nac3"]
+[ext_resource type="Resource" uid="uid://dfrx7bnoe5al" path="res://_data/animal_card_data/animal_card_data_fire_salamander_egg.tres" id="2_56xek"]
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
-[ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_ustmc"]
-[ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="4_jbw02"]
+[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resource_card_data/time_resource.tres" id="3_3qi03"]
 [ext_resource type="Script" uid="uid://w3sdw2tl2tjq" path="res://main_game_loop/game_loop_state_machine_handler.gd" id="4_xju2m"]
+[ext_resource type="Script" uid="uid://dmls05i6w60wl" path="res://play_area/scripts/add_card_to_container.gd" id="5_jltcq"]
 [ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/components/play_area_container.tscn" id="6_mes85"]
 [ext_resource type="Script" uid="uid://272jkca302h7" path="res://addons/godot_state_charts/state_chart.gd" id="9_h2jjx"]
 [ext_resource type="Script" uid="uid://la68xg61c4ow" path="res://addons/godot_state_charts/compound_state.gd" id="10_56xek"]
@@ -82,6 +84,9 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="CreateCardsFromList" parent="PanelContainer/MainLayout/OpenPackPanelContainer" instance=ExtResource("1_h2jjx")]
+card_data_list = Array[Resource]([ExtResource("2_56xek"), ExtResource("3_3qi03")])
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MainLayout/OpenPackPanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
@@ -135,7 +140,7 @@ texture = SubResource("AtlasTexture_3s05t")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Button" type="Button" parent="PanelContainer/MainLayout/OpenPackPanelContainer/VBoxContainer/CardPackSlot/CardPack"]
+[node name="OpenBoosterButton" type="Button" parent="PanelContainer/MainLayout/OpenPackPanelContainer/VBoxContainer/CardPackSlot/CardPack"]
 custom_minimum_size = Vector2(190, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -149,9 +154,6 @@ size_flags_vertical = 3
 [node name="ShowCardsPanel" type="PanelContainer" parent="PanelContainer/MainLayout"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="RemoveCardsInGroupFromParent" type="Node" parent="PanelContainer/MainLayout/ShowCardsPanel"]
-script = ExtResource("2_4nac3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MainLayout/ShowCardsPanel"]
 layout_mode = 2
@@ -170,13 +172,13 @@ size_flags_vertical = 3
 [node name="PackContainer" type="HBoxContainer" parent="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="EggCard" parent="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("4_jbw02")]
-custom_minimum_size = Vector2(250, 330)
-layout_mode = 2
+[node name="AddCardToContainer" type="Node" parent="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/PackContainer"]
+script = ExtResource("5_jltcq")
+card_group = 1
+metadata/_custom_type_script = "uid://dmls05i6w60wl"
 
-[node name="TimeCard" parent="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/PackContainer" groups=["in_booster_pack"] instance=ExtResource("3_ustmc")]
-custom_minimum_size = Vector2(250, 330)
-layout_mode = 2
+[node name="RemoveCardsInGroupFromParent" type="Node" parent="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/PackContainer"]
+script = ExtResource("2_4nac3")
 
 [node name="AcceptCardsButton" type="Button" parent="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer"]
 unique_name_in_owner = true
@@ -231,9 +233,10 @@ to = NodePath("../../OpenBoosterPack")
 event = &"booster_selected"
 delay_in_seconds = "0.0"
 
-[connection signal="pressed" from="PanelContainer/MainLayout/OpenPackPanelContainer/VBoxContainer/CardPackSlot/CardPack/Button" to="StateChartHandler" method="move_to_review_booster_cards"]
-[connection signal="done" from="PanelContainer/MainLayout/ShowCardsPanel/RemoveCardsInGroupFromParent" to="StateChartHandler" method="move_to_assemble_recipe"]
-[connection signal="pressed" from="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/AcceptCardsButton" to="PanelContainer/MainLayout/ShowCardsPanel/RemoveCardsInGroupFromParent" method="do"]
+[connection signal="pressed" from="PanelContainer/MainLayout/OpenPackPanelContainer/VBoxContainer/CardPackSlot/CardPack/OpenBoosterButton" to="PanelContainer/MainLayout/OpenPackPanelContainer/CreateCardsFromList" method="do"]
+[connection signal="pressed" from="PanelContainer/MainLayout/OpenPackPanelContainer/VBoxContainer/CardPackSlot/CardPack/OpenBoosterButton" to="StateChartHandler" method="move_to_review_booster_cards"]
+[connection signal="done" from="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/PackContainer/RemoveCardsInGroupFromParent" to="StateChartHandler" method="move_to_assemble_recipe"]
+[connection signal="pressed" from="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/AcceptCardsButton" to="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/PackContainer/RemoveCardsInGroupFromParent" method="do"]
 [connection signal="pressed" from="PanelContainer/MainLayout/ShowCardsPanel/VBoxContainer/AcceptCardsButton" to="StateChartHandler" method="activate_play_area"]
 [connection signal="state_entered" from="StateChart/CompoundState/OpenBoosterPack" to="PanelContainer/MainLayout/OpenPackPanelContainer" method="set_visible" binds= [true]]
 [connection signal="state_entered" from="StateChart/CompoundState/OpenBoosterPack" to="PanelContainer/MainLayout/OpenPackPanelContainer/VBoxContainer/CardPackSlot/CardPack/AnimationPlayer" method="set_current_animation" binds= [&"shake"]]
@@ -244,5 +247,3 @@ delay_in_seconds = "0.0"
 [connection signal="state_exited" from="StateChart/CompoundState/ReviewBoosterCards" to="PanelContainer/MainLayout/ShowCardsPanel" method="set_visible" binds= [false]]
 [connection signal="state_entered" from="StateChart/CompoundState/AssembleRecipe" to="PanelContainer/MainLayout/PlayAreaContainer" method="set_visible" binds= [true]]
 [connection signal="state_exited" from="StateChart/CompoundState/AssembleRecipe" to="PanelContainer/MainLayout/PlayAreaContainer" method="set_visible"]
-
-[editable path="PanelContainer/MainLayout/PlayAreaContainer"]
