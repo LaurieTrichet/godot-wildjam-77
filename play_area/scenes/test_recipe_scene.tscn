@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctyybayseolrk"]
+[gd_scene load_steps=6 format=3 uid="uid://ctyybayseolrk"]
 
 [ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/components/play_area_container.tscn" id="1_oa2di"]
-[ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="2_2hl11"]
-[ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="2_eaa45"]
-[ext_resource type="PackedScene" uid="uid://cuhwsxyf403hx" path="res://cards/scenes/tests/test_card_salamander_larva_2.tscn" id="4_7fuh0"]
+[ext_resource type="Resource" uid="uid://dfrx7bnoe5al" path="res://_data/animal_card_data/animal_card_data_fire_salamander_egg.tres" id="2_ybwoy"]
+[ext_resource type="Resource" uid="uid://xj1tmad6a7ob" path="res://_data/resource_card_data/time_resource.tres" id="3_wcp6k"]
+[ext_resource type="Script" uid="uid://dmls05i6w60wl" path="res://play_area/scripts/add_card_to_container.gd" id="5_b5ei2"]
+[ext_resource type="PackedScene" uid="uid://dm4lbmigmb2e0" path="res://cards/components/create_cards_from_list.tscn" id="5_jtnxo"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="CreateCardsFromList" parent="." instance=ExtResource("5_jtnxo")]
+card_data_list = Array[Resource]([ExtResource("2_ybwoy"), ExtResource("3_wcp6k")])
 
 [node name="MainLayout" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -36,13 +45,11 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MainLayout_PlayAreaContainer_HandsCardsArea_HandContainer#EggCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="0" instance=ExtResource("2_2hl11")]
-layout_mode = 2
+[node name="AddCardToContainer" type="Node" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="1"]
+script = ExtResource("5_b5ei2")
+card_group = 1
+metadata/_custom_type_script = "uid://dmls05i6w60wl"
 
-[node name="MainLayout_PlayAreaContainer_HandsCardsArea_HandContainer#TimeCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="1" instance=ExtResource("2_eaa45")]
-layout_mode = 2
-
-[node name="Stage2LarvaCard" parent="MainLayout/PlayAreaContainer/VContainer/HandsCardsArea/HandContainer" index="2" instance=ExtResource("4_7fuh0")]
-layout_mode = 2
+[connection signal="timeout" from="Timer" to="CreateCardsFromList" method="do"]
 
 [editable path="MainLayout/PlayAreaContainer"]

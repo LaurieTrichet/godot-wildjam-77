@@ -11,6 +11,7 @@ image = ExtResource("1_jhx22")
 
 [resource]
 script = ExtResource("1_gihpo")
+card_scene_path = "uid://dql3pwhkx18f"
 card_data = SubResource("Resource_sml5k")
 type = 0
 description = "Represent food"

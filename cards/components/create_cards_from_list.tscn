@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm4lbmigmb2e0"]
+
+[ext_resource type="Script" uid="uid://bb0en80ax73hb" path="res://cards/scripts/create_cards_from_list.gd" id="1_lce6g"]
+[ext_resource type="Script" uid="uid://c0cwueqvuf0k8" path="res://cards/scripts/create_animal_card.gd" id="2_reexc"]
+[ext_resource type="Script" uid="uid://bkawqous6cn43" path="res://cards/scripts/create_resource_card.gd" id="3_0rnih"]
+[ext_resource type="Script" uid="uid://dcbm0k8vl7xfh" path="res://play_area/scripts/tag_created_card.gd" id="4_14sot"]
+
+[node name="CreateCardsFromList" type="Node" node_paths=PackedStringArray("create_animal_card", "create_resource_card")]
+script = ExtResource("1_lce6g")
+create_animal_card = NodePath("CreateAnimalCard")
+create_resource_card = NodePath("CreateResourceCard")
+metadata/_custom_type_script = "uid://bb0en80ax73hb"
+
+[node name="CreateAnimalCard" type="Node" parent="."]
+script = ExtResource("2_reexc")
+metadata/_custom_type_script = "uid://c0cwueqvuf0k8"
+
+[node name="CreateResourceCard" type="Node" parent="."]
+script = ExtResource("3_0rnih")
+metadata/_custom_type_script = "uid://bkawqous6cn43"
+
+[node name="TagCreatedCard" type="Node" parent="."]
+script = ExtResource("4_14sot")
+group = 1
+metadata/_custom_type_script = "uid://dcbm0k8vl7xfh"
+
+[connection signal="card_created" from="CreateAnimalCard" to="TagCreatedCard" method="do"]
+[connection signal="card_created" from="CreateResourceCard" to="TagCreatedCard" method="do"]

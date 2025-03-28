@@ -7,6 +7,8 @@ enum ResourceType{
 	TIME
 }
 
+@export_file("*.tscn") var card_scene_path: String
+
 @export var card_data: CoreCardData
 @export var type: ResourceType
 var card_type: String:

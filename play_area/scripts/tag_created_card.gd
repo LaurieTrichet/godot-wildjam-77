@@ -6,7 +6,6 @@ signal done
 
 @export var group: CardSignal.Names
 
-
 func _ready() -> void:
 	CardSignal.add_signal(group)
 	

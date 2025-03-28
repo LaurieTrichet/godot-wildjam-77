@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_6lh5s")
+card_scene_path = "uid://dql3pwhkx18f"
 card_data = ExtResource("1_ba47h")
 type = 1
 description = "Represents the time passing."

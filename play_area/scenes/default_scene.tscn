@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bislmnwkbmc2n" path="res://textures/playingCardBacks.png" id="2_wmoj5"]
 [ext_resource type="PackedScene" uid="uid://db2350eu328y1" path="res://cards/scenes/tests/test_card_resource_time.tscn" id="3_ustmc"]
 [ext_resource type="PackedScene" uid="uid://csa62ijttcxxm" path="res://cards/scenes/tests/test_card_salamander_egg.tscn" id="4_jbw02"]
-[ext_resource type="Script" uid="uid://w3sdw2tl2tjq" path="res://play_area/scripts/game_loop_state_machine_handler.gd" id="4_xju2m"]
+[ext_resource type="Script" uid="uid://w3sdw2tl2tjq" path="res://main_game_loop/game_loop_state_machine_handler.gd" id="4_xju2m"]
 [ext_resource type="PackedScene" uid="uid://bfwf3bbwvdi2l" path="res://play_area/components/play_area_container.tscn" id="6_mes85"]
 [ext_resource type="Script" uid="uid://272jkca302h7" path="res://addons/godot_state_charts/state_chart.gd" id="9_h2jjx"]
 [ext_resource type="Script" uid="uid://la68xg61c4ow" path="res://addons/godot_state_charts/compound_state.gd" id="10_56xek"]
