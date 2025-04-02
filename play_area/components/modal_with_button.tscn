@@ -1,35 +1,50 @@
 [gd_scene format=3 uid="uid://besev78utvvve"]
 
 [node name="ModalWithParent" type="PanelContainer"]
+theme_type_variation = &"PopUpPanelContainer"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 44
+theme_override_constants/margin_top = 44
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 44
+
+[node name="Panel" type="Panel" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_type_variation = &"PopUpPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Title"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="VBoxContainer"]
+[node name="Spacer" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CardContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="CardContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Spacer3" type="Control" parent="VBoxContainer"]
+[node name="Spacer3" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(190, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Confirm"
 
-[node name="Spacer2" type="Control" parent="VBoxContainer"]
+[node name="Spacer2" type="Control" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

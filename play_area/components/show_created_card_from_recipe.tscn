@@ -3,27 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://besev78utvvve" path="res://play_area/components/modal_with_button.tscn" id="1_2h52q"]
 [ext_resource type="Script" uid="uid://dmls05i6w60wl" path="res://play_area/scripts/add_card_to_container.gd" id="2_n30kc"]
 [ext_resource type="Script" uid="uid://w8m8ghym6sx4" path="res://play_area/scripts/remove_cards_from_parent.gd" id="3_8br1t"]
-[ext_resource type="Script" uid="uid://bv4i1oj2r5fy7" path="res://event_bus/send_event_bus_event.gd" id="4_5lli1"]
+[ext_resource type="Script" uid="uid://bv4i1oj2r5fy7" path="res://play_area/scripts/send_event_bus_event.gd" id="4_5lli1"]
 
 [node name="ShowCreatedCardFromRecipe" instance=ExtResource("1_2h52q")]
 offset_right = 929.0
 offset_bottom = 836.0
 
-[node name="Label" parent="VBoxContainer" index="0"]
-text = "New Card Created!"
-
-[node name="RemoveCardsFromParent" type="Node" parent="VBoxContainer/CardContainer" index="0"]
-script = ExtResource("3_8br1t")
-metadata/_custom_type_script = "uid://w8m8ghym6sx4"
-
-[node name="AddCardToContainer" type="Node" parent="VBoxContainer/CardContainer" index="1"]
-script = ExtResource("2_n30kc")
-metadata/_custom_type_script = "uid://dmls05i6w60wl"
-
-[node name="SendEventBusEvent" type="Node" parent="." index="1"]
+[node name="SendEventBusEvent" type="Node" parent="." index="0"]
 script = ExtResource("4_5lli1")
 card_signal = 2
 metadata/_custom_type_script = "uid://bv4i1oj2r5fy7"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/CardContainer/RemoveCardsFromParent" method="do"]
-[connection signal="pressed" from="VBoxContainer/Button" to="SendEventBusEvent" method="do"]
+[node name="VBoxContainer_CardContainer#AddCardToContainer" type="Node" parent="CenterContainer/MarginContainer/VBoxContainer/CardContainer" index="0"]
+script = ExtResource("2_n30kc")
+metadata/_custom_type_script = "uid://dmls05i6w60wl"
+
+[node name="VBoxContainer_CardContainer#RemoveCardsFromParent" type="Node" parent="CenterContainer/MarginContainer/VBoxContainer/CardContainer" index="1"]
+script = ExtResource("3_8br1t")
+metadata/_custom_type_script = "uid://w8m8ghym6sx4"
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Button" to="SendEventBusEvent" method="do"]
