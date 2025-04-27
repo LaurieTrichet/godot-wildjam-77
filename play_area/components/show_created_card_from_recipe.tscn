@@ -23,3 +23,4 @@ script = ExtResource("3_8br1t")
 metadata/_custom_type_script = "uid://w8m8ghym6sx4"
 
 [connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Button" to="SendEventBusEvent" method="do"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Button" to="CenterContainer/MarginContainer/VBoxContainer/CardContainer/VBoxContainer_CardContainer#RemoveCardsFromParent" method="do"]
